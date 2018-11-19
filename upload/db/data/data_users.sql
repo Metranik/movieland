@@ -1,0 +1,10 @@
+INSERT INTO users (name, email, nick) VALUES ('﻿Рональд Рейнольдс','ronald.reynolds66@example.com','paco');
+INSERT INTO users (name, email, nick) VALUES ('Дарлин Эдвардс','darlene.edwards15@example.com','bricks');
+INSERT INTO users (name, email, nick) VALUES ('Габриэль Джексон','gabriel.jackson91@example.com','hjkl');
+INSERT INTO users (name, email, nick) VALUES ('Дэрил Брайант','daryl.bryant94@example.com','exodus');
+INSERT INTO users (name, email, nick) VALUES ('Нил Паркер','neil.parker43@example.com','878787');
+INSERT INTO users (name, email, nick) VALUES ('Трэвис Райт','travis.wright36@example.com','smart');
+INSERT INTO users (name, email, nick) VALUES ('Амелия Кэннеди','amelia.kennedy58@example.com','beaker');
+INSERT INTO users (name, email, nick) VALUES ('Айда Дэвис','ida.davis80@example.com','pepsi1');
+INSERT INTO users (name, email, nick) VALUES ('Джесси Паттерсон','jessie.patterson68@example.com','tommy');
+INSERT INTO users (name, email, nick) VALUES ('Деннис Крейг','dennis.craig82@example.com','coldbeer');
