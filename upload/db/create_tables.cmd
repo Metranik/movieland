@@ -1,0 +1,1 @@
+psql -h localhost -d movieland -U movieland -p 5432 --echo-errors --quiet -f ddl/create_tables.sql >create_tables.log 2>&1

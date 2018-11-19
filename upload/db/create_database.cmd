@@ -1,0 +1,1 @@
+psql -h localhost -d postgres -U postgres -p 5432 --echo-errors --quiet -f ddl/create_database.sql
