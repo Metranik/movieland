@@ -1,0 +1,1 @@
+psql -h localhost -d movieland -U movieland -p 5432

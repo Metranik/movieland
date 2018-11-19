@@ -2,9 +2,6 @@ package com.art.uploader;
 
 import java.io.*;
 import java.text.MessageFormat;
-import java.util.Formatter;
-import java.util.HashMap;
-import java.util.Map;
 
 public class RunUploader {
     private static String INSERT_GENRE = "INSERT INTO genre(name) VALUES(''{0}'');";
@@ -51,7 +48,7 @@ public class RunUploader {
             BufferedWriter writer = new BufferedWriter(new FileWriter(fileOutName));) {
             String inLine;
             int count = 0;
-            String[] userInfo = new String[USER_INFO_SIZE];
+            Object[] userInfo = new String[USER_INFO_SIZE];
             while ((inLine = reader.readLine()) != null) {
                 if (!inLine.isEmpty()) {
                     userInfo[count] = inLine;
@@ -147,7 +144,7 @@ public class RunUploader {
             String inLine;
             StringBuilder lineBuilder = new StringBuilder();
             int count = 0;
-            String[] reviewInfo = new String[REVIEW_INFO_SIZE];
+            Object[] reviewInfo = new String[REVIEW_INFO_SIZE];
             while ((inLine = reader.readLine()) != null) {
                 if (!inLine.isEmpty()) {
                     lineBuilder.append(inLine);
