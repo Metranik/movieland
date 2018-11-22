@@ -38,6 +38,7 @@ public class RunUploader {
                     writer.newLine();
                 }
             }
+            writer.flush();
         }
     }
 
@@ -61,6 +62,7 @@ public class RunUploader {
                     }
                 }
             }
+            writer.flush();
         }
     }
 
@@ -75,6 +77,7 @@ public class RunUploader {
                     writer.newLine();
                 }
             }
+            writer.flush();
         }
     }
 
@@ -133,6 +136,7 @@ public class RunUploader {
                     }
                 }
             }
+            writer.flush();
         }
     }
 
@@ -161,6 +165,7 @@ public class RunUploader {
                     }
                 }
             }
+            writer.flush();
         }
     }
 }

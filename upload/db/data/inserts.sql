@@ -21,5 +21,13 @@ SELECT m.id
   FROM raw_movie_to_genre t
   JOIN movie m ON m.nameRussian = t.nameRussian
   JOIN genre g ON g.name = t.genre;  
+
+INSERT INTO review (movieId, userId, comment)
+SELECT m.id
+     , u.id
+     , t.comment
+  FROM raw_review t
+  JOIN movie m ON m.nameRussian = t.nameRussian
+  JOIN users u ON u.name = t.nameUser;
   
 COMMIT;

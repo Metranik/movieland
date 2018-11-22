@@ -126,3 +126,9 @@ INSERT INTO raw_movie_to_genre (nameRussian, genre) VALUES ('Джанго осв
 INSERT INTO raw_movie_to_genre (nameRussian, genre) VALUES ('Джанго освобожденный','вестерн');
 INSERT INTO raw_movie_to_genre (nameRussian, genre) VALUES ('Джанго освобожденный','приключения');
 INSERT INTO raw_movie_to_genre (nameRussian, genre) VALUES ('Джанго освобожденный','комедия');
+INSERT INTO movie(nameRussian, nameNative, yearOfRelease, description, rating, price) VALUES('Танцующий с волками','Dances with Wolves','1990','Действие фильма происходит в США во времена Гражданской войны. Лейтенант американской армии Джон Данбар после ранения в бою просит перевести его на новое место службы ближе к западной границе США. Место его службы отдалённый маленький форт. Непосредственный его командир покончил жизнь самоубийством, а попутчик Данбара погиб в стычке с индейцами после того, как довез героя до места назначения. Людей, знающих, что Данбар остался один в форте и должен выжить в условиях суровой природы, и в соседстве с кажущимися негостеприимными коренными обитателями Северной Америки, просто не осталось. Казалось, он покинут всеми. Постепенно лейтенант осваивается, он ведет записи в дневнике…','8.00','120.55');
+INSERT INTO raw_movie_to_country (nameRussian, country) VALUES ('Танцующий с волками','США');
+INSERT INTO raw_movie_to_country (nameRussian, country) VALUES ('Танцующий с волками','Великобритания');
+INSERT INTO raw_movie_to_genre (nameRussian, genre) VALUES ('Танцующий с волками','драма');
+INSERT INTO raw_movie_to_genre (nameRussian, genre) VALUES ('Танцующий с волками','приключения');
+INSERT INTO raw_movie_to_genre (nameRussian, genre) VALUES ('Танцующий с волками','вестерн');
