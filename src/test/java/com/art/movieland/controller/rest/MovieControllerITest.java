@@ -12,13 +12,11 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
+import static org.springframework.test.web.servlet.ResultMatcher.matchAll;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/applicationContext.xml", "file:src/main/webapp/WEB-INF/dispatcherServlet-servlet.xml"})
@@ -37,9 +35,54 @@ public class MovieControllerITest {
     @Test
     public void testGetAll() throws Exception {
         mockMvc.perform(get("/v1/movie"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-                .andExpect(jsonPath("$", hasSize(24)))
-                .andDo(print());
+                //.andDo(print())
+                .andExpect(
+                        matchAll(
+                                status().isOk(),
+                                content().contentType(MediaType.APPLICATION_JSON_UTF8),
+                                jsonPath("$", hasSize(25))
+                        )
+                );
+    }
+
+    @Test
+    public void testGetAllXml() throws Exception {
+        mockMvc.perform(get("/v1/movie/xml"))
+                //.andDo(print())
+                .andExpect(
+                        matchAll(
+                                status().isOk(),
+                                content().contentType("application/xml;charset=UTF-8"),
+                                xpath("List/item").nodeCount(25),
+                                xpath("List/item/id").exists()
+                        )
+                );
+    }
+
+    @Test
+    public void testGetRandom() throws Exception {
+        mockMvc.perform(get("/v1/movie/random"))
+                .andDo(print())
+                .andExpect(
+                        matchAll(
+                                status().isOk(),
+                                content().contentType(MediaType.APPLICATION_JSON_UTF8),
+                                jsonPath("$", hasSize(3))
+                        )
+                );
+    }
+
+    @Test
+    public void testGetRandomXml() throws Exception {
+        mockMvc.perform(get("/v1/movie/random/xml"))
+                .andDo(print())
+                .andExpect(
+                        matchAll(
+                                status().isOk(),
+                                content().contentType("application/xml;charset=UTF-8"),
+                                xpath("List/item").nodeCount(3),
+                                xpath("List/item/id").exists()
+                        )
+                );
     }
 }
