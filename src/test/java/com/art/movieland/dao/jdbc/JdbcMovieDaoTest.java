@@ -54,24 +54,59 @@ public class JdbcMovieDaoTest {
 
         assertEquals(2, actualMovies.size());
 
-        Movie actualMovie1 = actualMovies.get(0);
-        Movie expectedMovie1 = expectedMovies.get(0);
-        assertEquals(expectedMovie1.getId(),actualMovie1.getId());
-        assertEquals(expectedMovie1.getNameRussian(),actualMovie1.getNameRussian());
-        assertEquals(expectedMovie1.getNameNative(),actualMovie1.getNameNative());
-        assertEquals(expectedMovie1.getYearOfRelease(),actualMovie1.getYearOfRelease());
-        assertEquals(expectedMovie1.getRating(),actualMovie1.getRating(),0d);
-        assertEquals(expectedMovie1.getPrice(),actualMovie1.getPrice(),0d);
-        assertEquals(expectedMovie1.getPicturePath(),actualMovie1.getPicturePath());
-
-        Movie actualMovie2 = actualMovies.get(1);
-        Movie expectedMovie2 = expectedMovies.get(1);
-        assertEquals(expectedMovie2.getId(),actualMovie2.getId());
-        assertEquals(expectedMovie2.getNameRussian(),actualMovie2.getNameRussian());
-        assertEquals(expectedMovie2.getNameNative(),actualMovie2.getNameNative());
-        assertEquals(expectedMovie2.getYearOfRelease(),actualMovie2.getYearOfRelease());
-        assertEquals(expectedMovie2.getRating(),actualMovie2.getRating(),0d);
-        assertEquals(expectedMovie2.getPrice(),actualMovie2.getPrice(),0d);
-        assertEquals(expectedMovie2.getPicturePath(),actualMovie2.getPicturePath());
+        assertEquals(expectedMovies.get(0),actualMovies.get(0));
+        assertEquals(expectedMovies.get(1),actualMovies.get(1));
     }
+
+    @Test
+    public void testGetRandom() {
+        // Prepare
+        JdbcTemplate jdbcTemplate = mock(JdbcTemplate.class);
+        MovieDao movieDao = new JdbcMovieDao(jdbcTemplate);
+
+        List<Movie> expectedMovies = new ArrayList<>();
+
+        Movie movie1 = new Movie();
+        movie1.setId(1);
+        movie1.setNameRussian("Побег из Шоушенка");
+        movie1.setNameNative("The Shawshank Redemption");
+        movie1.setYearOfRelease(1994);
+        movie1.setRating(8.9);
+        movie1.setPrice(123.45);
+        movie1.setPicturePath("url1");
+        expectedMovies.add(movie1);
+
+        Movie movie3 = new Movie();
+        movie3.setId(3);
+        movie3.setNameRussian("Форрест Гамп");
+        movie3.setNameNative("Forrest Gump");
+        movie3.setYearOfRelease(1994);
+        movie3.setRating(8.6);
+        movie3.setPrice(200.6);
+        movie3.setPicturePath("url3");
+        expectedMovies.add(movie3);
+
+        Movie movie5 = new Movie();
+        movie3.setId(5);
+        movie3.setNameRussian("1+1");
+        movie3.setNameNative("Intouchables");
+        movie3.setYearOfRelease(2011);
+        movie3.setRating(8.3);
+        movie3.setPrice(120.0);
+        movie3.setPicturePath("url5");
+        expectedMovies.add(movie5);
+
+        // When
+        when(jdbcTemplate.query(any(String.class), any(MovieRowMapper.class))).thenReturn(expectedMovies);
+
+        // Then
+        List<Movie> actualMovies = movieDao.getRandom(3);
+
+        assertEquals(3, actualMovies.size());
+
+        assertEquals(expectedMovies.get(0),actualMovies.get(0));
+        assertEquals(expectedMovies.get(1),actualMovies.get(1));
+        assertEquals(expectedMovies.get(2),actualMovies.get(2));
+    }
+
 }

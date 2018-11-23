@@ -20,5 +20,10 @@ public class DefaultMovieService implements MovieService {
     public List<Movie> getAll() {
          return movieDao.getAll();
     }
+
+    @Override
+    public List<Movie> getRandom(int count) {
+        return movieDao.getRandom(count);
+    }
 }
 

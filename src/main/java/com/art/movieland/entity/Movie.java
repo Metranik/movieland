@@ -1,5 +1,7 @@
 package com.art.movieland.entity;
 
+import java.util.Objects;
+
 public class Movie {
     private int id;
     private String nameRussian;
@@ -77,4 +79,24 @@ public class Movie {
                 ", picturePath='" + picturePath + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Movie movie = (Movie) o;
+        return id == movie.id &&
+                yearOfRelease == movie.yearOfRelease &&
+                Double.compare(movie.rating, rating) == 0 &&
+                Double.compare(movie.price, price) == 0 &&
+                Objects.equals(nameRussian, movie.nameRussian) &&
+                Objects.equals(nameNative, movie.nameNative) &&
+                Objects.equals(picturePath, movie.picturePath);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nameRussian, nameNative, yearOfRelease, rating, price, picturePath);
+    }
+
 }
