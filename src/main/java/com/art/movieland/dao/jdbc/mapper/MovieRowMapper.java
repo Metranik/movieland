@@ -22,7 +22,7 @@ public class MovieRowMapper implements RowMapper<Movie> {
         movie.setPrice(resultSet.getDouble("price"));
         movie.setPicturePath(resultSet.getString("picturePath"));
 
-        logger.debug("Mapped Movie {}", movie);
+        logger.debug("Movie {}", movie);
 
         return movie;
     }
