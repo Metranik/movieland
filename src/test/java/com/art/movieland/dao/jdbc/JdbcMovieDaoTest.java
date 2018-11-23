@@ -9,8 +9,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
@@ -52,7 +50,7 @@ public class JdbcMovieDaoTest {
         // Then
         List<Movie> actualMovies = movieDao.getAll();
 
-        assertEquals(2, actualMovies.size());
+        assertEquals(expectedMovies.size(), actualMovies.size());
 
         assertEquals(expectedMovies.get(0),actualMovies.get(0));
         assertEquals(expectedMovies.get(1),actualMovies.get(1));

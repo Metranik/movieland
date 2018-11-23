@@ -16,8 +16,7 @@ public class DefaultMovieServiceTest {
     @Test
     public void testGetAll() {
         // Prepare
-        MovieDao movieDao = mock(MovieDao.class);
-        MovieService movieService = new DefaultMovieService(movieDao);
+        MovieService movieService = mock(MovieService.class);
 
         List<Movie> expectedMovies = new ArrayList<>();
 
@@ -47,18 +46,16 @@ public class DefaultMovieServiceTest {
         // Then
         List<Movie> actualMovies = movieService.getAll();
 
-        assertEquals(2, actualMovies.size());
+        assertEquals(expectedMovies.size(), actualMovies.size());
 
         assertEquals(expectedMovies.get(0),actualMovies.get(0));
         assertEquals(expectedMovies.get(1),actualMovies.get(1));
     }
 
-
     @Test
     public void testGetRandom() {
         // Prepare
-        MovieDao movieDao = mock(MovieDao.class);
-        MovieService movieService = new DefaultMovieService(movieDao);
+        MovieService movieService = mock(MovieService.class);
 
         List<Movie> expectedMovies = new ArrayList<>();
 
