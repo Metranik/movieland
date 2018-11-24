@@ -12,8 +12,8 @@ public class DefaultMovieService implements MovieService {
 
     private MovieDao movieDao;
 
-    @Value("${app.movieRandomCount:3}")
-    private int movieRandomCount;
+    @Value("${app.movieRandomLimit:3}")
+    private int movieRandomLimit;
 
     @Autowired
     public DefaultMovieService(MovieDao movieDao) {
@@ -27,7 +27,7 @@ public class DefaultMovieService implements MovieService {
 
     @Override
     public List<Movie> getRandom() {
-        return movieDao.getRandom(movieRandomCount);
+        return movieDao.getRandom(movieRandomLimit);
     }
 
     @Override
@@ -35,5 +35,12 @@ public class DefaultMovieService implements MovieService {
         return movieDao.getByGenre(genreId);
     }
 
+    public int getMovieRandomLimit() {
+        return movieRandomLimit;
+    }
+
+    public void setMovieRandomLimit(int movieRandomLimit) {
+        this.movieRandomLimit = movieRandomLimit;
+    }
 }
 
