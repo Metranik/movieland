@@ -80,13 +80,13 @@ public class DefaultMovieServiceTest {
         expectedMovies.add(movie3);
 
         Movie movie5 = new Movie();
-        movie3.setId(5);
-        movie3.setNameRussian("1+1");
-        movie3.setNameNative("Intouchables");
-        movie3.setYearOfRelease(2011);
-        movie3.setRating(8.3);
-        movie3.setPrice(120.0);
-        movie3.setPicturePath("url5");
+        movie5.setId(5);
+        movie5.setNameRussian("1+1");
+        movie5.setNameNative("Intouchables");
+        movie5.setYearOfRelease(2011);
+        movie5.setRating(8.3);
+        movie5.setPrice(120.0);
+        movie5.setPicturePath("url5");
         expectedMovies.add(movie5);
 
         // When
@@ -95,7 +95,7 @@ public class DefaultMovieServiceTest {
         // Then
         List<Movie> actualMovies = movieService.getRandom(3);
 
-        assertEquals(3, actualMovies.size());
+        assertEquals(expectedMovies.size(), actualMovies.size());
 
         assertEquals(expectedMovies.get(0),actualMovies.get(0));
         assertEquals(expectedMovies.get(1),actualMovies.get(1));

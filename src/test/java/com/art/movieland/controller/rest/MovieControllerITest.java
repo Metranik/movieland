@@ -35,26 +35,12 @@ public class MovieControllerITest {
     @Test
     public void testGetAll() throws Exception {
         mockMvc.perform(get("/v1/movie"))
-                //.andDo(print())
+                .andDo(print())
                 .andExpect(
                         matchAll(
                                 status().isOk(),
                                 content().contentType(MediaType.APPLICATION_JSON_UTF8),
                                 jsonPath("$", hasSize(25))
-                        )
-                );
-    }
-
-    @Test
-    public void testGetAllXml() throws Exception {
-        mockMvc.perform(get("/v1/movie/xml"))
-                //.andDo(print())
-                .andExpect(
-                        matchAll(
-                                status().isOk(),
-                                content().contentType("application/xml;charset=UTF-8"),
-                                xpath("List/item").nodeCount(25),
-                                xpath("List/item/id").exists()
                         )
                 );
     }
@@ -73,16 +59,16 @@ public class MovieControllerITest {
     }
 
     @Test
-    public void testGetRandomXml() throws Exception {
-        mockMvc.perform(get("/v1/movie/random/xml"))
+    public void testGetByGenre() throws Exception {
+        mockMvc.perform(get("/v1/movie/genre/1"))
                 .andDo(print())
                 .andExpect(
                         matchAll(
                                 status().isOk(),
-                                content().contentType("application/xml;charset=UTF-8"),
-                                xpath("List/item").nodeCount(3),
-                                xpath("List/item/id").exists()
+                                content().contentType(MediaType.APPLICATION_JSON_UTF8),
+                                jsonPath("$", hasSize(16))
                         )
                 );
     }
+
 }
