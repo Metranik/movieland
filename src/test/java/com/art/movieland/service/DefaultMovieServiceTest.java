@@ -90,10 +90,10 @@ public class DefaultMovieServiceTest {
         expectedMovies.add(movie5);
 
         // When
-        when(movieService.getRandom(3)).thenReturn(expectedMovies);
+        when(movieService.getRandom()).thenReturn(expectedMovies);
 
         // Then
-        List<Movie> actualMovies = movieService.getRandom(3);
+        List<Movie> actualMovies = movieService.getRandom();
 
         assertEquals(expectedMovies.size(), actualMovies.size());
 

@@ -3,6 +3,7 @@ package com.art.movieland.service;
 import com.art.movieland.dao.MovieDao;
 import com.art.movieland.entity.Movie;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -10,6 +11,9 @@ import java.util.List;
 public class DefaultMovieService implements MovieService {
 
     private MovieDao movieDao;
+
+    @Value("${app.movieRandomCount:3}")
+    private int movieRandomCount;
 
     @Autowired
     public DefaultMovieService(MovieDao movieDao) {
@@ -22,8 +26,8 @@ public class DefaultMovieService implements MovieService {
     }
 
     @Override
-    public List<Movie> getRandom(int count) {
-        return movieDao.getRandom(count);
+    public List<Movie> getRandom() {
+        return movieDao.getRandom(movieRandomCount);
     }
 
     @Override
