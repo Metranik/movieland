@@ -1,6 +1,7 @@
 package com.art.movieland.controller.rest;
 
 import com.art.movieland.entity.Movie;
+import com.art.movieland.entity.SortMovie;
 import com.art.movieland.service.MovieService;
 import org.junit.Before;
 import org.junit.Test;
@@ -62,7 +63,7 @@ public class MovieControllerTest {
         movie2.setPicturePath("url2");
 
         // When
-        when(movieController.getAll()).thenReturn(Arrays.asList(movie1, movie2));
+        when(movieController.getAll(any())).thenReturn(Arrays.asList(movie1, movie2));
 
         // Then
         mockMvc.perform(get("/v1/movie"))
@@ -176,7 +177,7 @@ public class MovieControllerTest {
         movie2.setPicturePath("url2");
 
         // When
-        when(movieService.getByGenre(1)).thenReturn(Arrays.asList(movie1, movie2));
+        when(movieService.getByGenre(anyInt(), any(SortMovie.class))).thenReturn(Arrays.asList(movie1, movie2));
 
         // Then
         mockMvc.perform(get("/v1/movie/genre/1"))

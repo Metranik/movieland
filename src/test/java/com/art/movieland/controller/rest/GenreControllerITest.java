@@ -22,7 +22,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/applicationContext.xml",
-        "file:src/main/webapp/WEB-INF/dispatcherServlet-servlet.xml"})
+        "file:src/main/webapp/WEB-INF/dispatcherServlet-servlet.xml",
+        "classpath:testContext.xml"})
 @WebAppConfiguration
 public class GenreControllerITest {
     private MockMvc mockMvc;

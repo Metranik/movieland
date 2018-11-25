@@ -3,6 +3,7 @@ package com.art.movieland.dao.jdbc;
 import com.art.movieland.dao.MovieDao;
 import com.art.movieland.dao.jdbc.mapper.MovieRowMapper;
 import com.art.movieland.entity.Movie;
+import com.art.movieland.entity.SortMovie;
 import org.junit.Test;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -22,6 +23,7 @@ public class JdbcMovieDaoTest {
         // Prepare
         JdbcTemplate jdbcTemplate = mock(JdbcTemplate.class);
         MovieDao movieDao = new JdbcMovieDao(jdbcTemplate);
+        SortMovie sortMovie = mock(SortMovie.class);
 
         List<Movie> expectedMovies = new ArrayList<>();
 
@@ -49,7 +51,7 @@ public class JdbcMovieDaoTest {
         when(jdbcTemplate.query(any(String.class), any(MovieRowMapper.class))).thenReturn(expectedMovies);
 
         // Then
-        List<Movie> actualMovies = movieDao.getAll();
+        List<Movie> actualMovies = movieDao.getAll(sortMovie);
 
         assertEquals(expectedMovies.size(), actualMovies.size());
 
@@ -62,6 +64,7 @@ public class JdbcMovieDaoTest {
         // Prepare
         JdbcTemplate jdbcTemplate = mock(JdbcTemplate.class);
         MovieDao movieDao = new JdbcMovieDao(jdbcTemplate);
+        SortMovie sortMovie = mock(SortMovie.class);
 
         List<Movie> expectedMovies = new ArrayList<>();
 
@@ -99,7 +102,7 @@ public class JdbcMovieDaoTest {
         when(jdbcTemplate.query(any(String.class), any(MovieRowMapper.class))).thenReturn(expectedMovies);
 
         // Then
-        List<Movie> actualMovies = movieDao.getAll();
+        List<Movie> actualMovies = movieDao.getAll(sortMovie);
 
         assertEquals(expectedMovies.size(), actualMovies.size());
 
@@ -112,6 +115,7 @@ public class JdbcMovieDaoTest {
     public void testGetByGenre() {
         JdbcTemplate jdbcTemplate = mock(JdbcTemplate.class);
         MovieDao movieDao = new JdbcMovieDao(jdbcTemplate);
+        SortMovie sortMovie = mock(SortMovie.class);
 
         List<Movie> expectedMovies = new ArrayList<>();
 
@@ -139,7 +143,7 @@ public class JdbcMovieDaoTest {
         when(jdbcTemplate.query(any(String.class), any(MovieRowMapper.class), any(Integer.class))).thenReturn(expectedMovies);
 
         // Then
-        List<Movie> actualMovies = movieDao.getByGenre(1);
+        List<Movie> actualMovies = movieDao.getByGenre(1, sortMovie);
 
         assertEquals(expectedMovies.size(), actualMovies.size());
 
