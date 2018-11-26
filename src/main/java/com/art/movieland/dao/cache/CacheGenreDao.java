@@ -13,14 +13,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 @Repository
 public class CacheGenreDao implements GenreDao {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
     private final GenreDao genreDao;
-    private volatile Map<Integer, Genre> cache = new HashMap<>();//Concurrent
+    private volatile Map<Integer, Genre> cache = new HashMap<>();
 
     @Autowired
     public CacheGenreDao(GenreDao genreDao) {
@@ -40,11 +39,10 @@ public class CacheGenreDao implements GenreDao {
     @SuppressWarnings("unused")
     public void populateCache() {
         List<Genre> genres = genreDao.getAll();
+        Map<Integer, Genre> populatedCache= new HashMap<>();
+        genres.forEach((genre) -> populatedCache.put(genre.getId(), genre));
+        cache = populatedCache;
 
-        synchronized (cache) {
-            cache.clear();
-            genres.forEach((genre) -> cache.put(genre.getId(), genre));
-        }
         logger.debug("Genres in cache: {}", genres);
     }
 
