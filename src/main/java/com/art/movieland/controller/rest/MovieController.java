@@ -2,12 +2,11 @@ package com.art.movieland.controller.rest;
 
 import com.art.movieland.entity.Movie;
 import com.art.movieland.service.MovieService;
+import com.sun.istack.internal.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,33 +15,30 @@ public class MovieController {
 
     private MovieService movieService;
 
+    @Value("${app.movieRandomCount:3}")
+    private int movieRandomCount;
+
     @Autowired
     public MovieController(MovieService movieService) {
         this.movieService = movieService;
     }
 
-    @GetMapping(path = {"/v1/movie", "/v1/movie/json"},
+    @GetMapping(path = {"/v1/movie"},
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public List<Movie> getAll() {
         return movieService.getAll();
     }
 
-    @GetMapping(path = "/v1/movie/xml",
-            produces = MediaType.APPLICATION_XML_VALUE)
-    public List<Movie> getAllXml() {
-        return movieService.getAll();
-    }
-
-    @GetMapping(path = {"/v1/movie/random", "/v1/movie/random/json"},
+    @GetMapping(path = {"/v1/movie/random"},
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public List<Movie> getRandom() {
-        return movieService.getRandom(3);
+        return movieService.getRandom(movieRandomCount);
     }
 
-    @GetMapping(path = "/v1/movie/random/xml",
-            produces = MediaType.APPLICATION_XML_VALUE)
-    public List<Movie> getRandomXml() {
-        return movieService.getRandom(3);
+    @GetMapping(path = {"/v1/movie/genre/{genreId}"},
+            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public List<Movie> getByGenre(@PathVariable int genreId) {
+        return movieService.getByGenre(genreId);
     }
 
 }
