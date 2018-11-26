@@ -2,9 +2,7 @@ package com.art.movieland.controller.rest;
 
 import com.art.movieland.entity.Movie;
 import com.art.movieland.service.MovieService;
-import com.sun.istack.internal.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,9 +12,6 @@ import java.util.List;
 public class MovieController {
 
     private MovieService movieService;
-
-    @Value("${app.movieRandomCount:3}")
-    private int movieRandomCount;
 
     @Autowired
     public MovieController(MovieService movieService) {
@@ -32,7 +27,7 @@ public class MovieController {
     @GetMapping(path = {"/v1/movie/random"},
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public List<Movie> getRandom() {
-        return movieService.getRandom(movieRandomCount);
+        return movieService.getRandom();
     }
 
     @GetMapping(path = {"/v1/movie/genre/{genreId}"},

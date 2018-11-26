@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public class JdbcMovieDao implements MovieDao {
     private static final String GET_ALL_MOVIES = "SELECT m.id, m.nameRussian, m.nameNative, m.yearOfRelease, m.rating, m.price, p.picturePath FROM movie m JOIN poster p ON m.id = p.movieId";
-    private static final String GET_RANDOM_MOVIES = "SELECT m.id, m.nameRussian, m.nameNative, m.yearOfRelease, m.rating, m.price, p.picturePath FROM movie m TABLESAMPLE SYSTEM(50) JOIN poster p ON m.id = p.movieId LIMIT ?";
+    private static final String GET_RANDOM_MOVIES = "SELECT m.id, m.nameRussian, m.nameNative, m.yearOfRelease, m.rating, m.price, p.picturePath FROM movie m TABLESAMPLE BERNOULLI(50) JOIN poster p ON m.id = p.movieId LIMIT ?";
     private static final String GET_MOVIES_BY_GENRE = "SELECT m.id, m.nameRussian, m.nameNative, m.yearOfRelease, m.rating, m.price, p.picturePath " +
             "FROM movie m " +
             "JOIN poster p ON m.id = p.movieId " +
