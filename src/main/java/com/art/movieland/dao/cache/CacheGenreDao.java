@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -19,7 +20,7 @@ public class CacheGenreDao implements GenreDao {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
     private final GenreDao genreDao;
-    private Map<Integer, Genre> cache = new ConcurrentHashMap<>();
+    private volatile Map<Integer, Genre> cache = new HashMap<>();//Concurrent
 
     @Autowired
     public CacheGenreDao(GenreDao genreDao) {
@@ -38,11 +39,12 @@ public class CacheGenreDao implements GenreDao {
     @PostConstruct
     @SuppressWarnings("unused")
     public void populateCache() {
-        cache.clear();
-
         List<Genre> genres = genreDao.getAll();
-        genres.forEach((genre) -> cache.put(genre.getId(), genre));
 
+        synchronized (cache) {
+            cache.clear();
+            genres.forEach((genre) -> cache.put(genre.getId(), genre));
+        }
         logger.debug("Genres in cache: {}", genres);
     }
 
