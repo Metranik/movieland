@@ -1,4 +1,4 @@
-INSERT INTO users (id, name, email, nick) VALUES (1, '﻿Рональд Рейнольдс', 'ronald.reynolds66@example.com', 'paco');
+INSERT INTO users (id, name, email, nick) VALUES (1, 'Рональд Рейнольдс', 'ronald.reynolds66@example.com', 'paco');
 INSERT INTO users (id, name, email, nick) VALUES (2, 'Дарлин Эдвардс', 'darlene.edwards15@example.com', 'bricks');
 INSERT INTO users (id, name, email, nick) VALUES (3, 'Габриэль Джексон', 'gabriel.jackson91@example.com', 'hjkl');
 INSERT INTO users (id, name, email, nick) VALUES (4, 'Дэрил Брайант', 'daryl.bryant94@example.com', 'exodus');

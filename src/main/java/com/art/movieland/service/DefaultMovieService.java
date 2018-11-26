@@ -2,6 +2,7 @@ package com.art.movieland.service;
 
 import com.art.movieland.dao.MovieDao;
 import com.art.movieland.entity.Movie;
+import com.art.movieland.entity.SortMovie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -21,8 +22,8 @@ public class DefaultMovieService implements MovieService {
     }
 
     @Override
-    public List<Movie> getAll() {
-         return movieDao.getAll();
+    public List<Movie> getAll(SortMovie sortMovie) {
+         return movieDao.getAll(sortMovie);
     }
 
     @Override
@@ -31,8 +32,8 @@ public class DefaultMovieService implements MovieService {
     }
 
     @Override
-    public List<Movie> getByGenre(int genreId) {
-        return movieDao.getByGenre(genreId);
+    public List<Movie> getByGenre(int genreId, SortMovie sortMovie) {
+        return movieDao.getByGenre(genreId, sortMovie);
     }
 
     public int getMovieRandomLimit() {
