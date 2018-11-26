@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@SuppressWarnings("unused")
 public class DefaultMovieService implements MovieService {
 
     private MovieDao movieDao;
