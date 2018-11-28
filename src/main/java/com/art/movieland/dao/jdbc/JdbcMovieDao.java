@@ -3,14 +3,18 @@ package com.art.movieland.dao.jdbc;
 import com.art.movieland.dao.MovieDao;
 import com.art.movieland.dao.jdbc.mapper.MovieRowMapper;
 import com.art.movieland.entity.Movie;
-import com.art.movieland.entity.SortMovie;
+import com.art.movieland.entity.MovieParam;
+import com.art.movieland.entity.MovieQueryField;
+import com.art.movieland.entity.SortOrder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class JdbcMovieDao implements MovieDao {
@@ -34,9 +38,9 @@ public class JdbcMovieDao implements MovieDao {
     }
 
     @Override
-    public List<Movie> getAll(SortMovie sortMovie) {
-        logger.debug("SortMovie {}", sortMovie);
-        return jdbcTemplate.query(GET_ALL_MOVIES + sortMovie, MOVIE_ROW_MAPPER);
+    public List<Movie> getAll(MovieParam movieParam) {
+        logger.debug("MovieParam {}", movieParam);
+        return jdbcTemplate.query(buildQuery(GET_ALL_MOVIES, movieParam), MOVIE_ROW_MAPPER);
     }
 
     @Override
@@ -45,8 +49,27 @@ public class JdbcMovieDao implements MovieDao {
     }
 
     @Override
-    public List<Movie> getByGenre(int genreId, SortMovie sortMovie) {
-        return jdbcTemplate.query(GET_MOVIES_BY_GENRE + sortMovie, MOVIE_ROW_MAPPER, genreId);
+    public List<Movie> getByGenre(int genreId, MovieParam movieParam) {
+        return jdbcTemplate.query(buildQuery(GET_MOVIES_BY_GENRE, movieParam), MOVIE_ROW_MAPPER, genreId);
     }
 
+    private String buildQuery(String sql, MovieParam movieParam) {
+        StringBuilder stringBuilder = new StringBuilder(sql);
+
+        Map<MovieQueryField, SortOrder> sortMap = movieParam.getSortMap();
+        if (sortMap == null || !sortMap.keySet().iterator().hasNext()) {
+            return stringBuilder.toString();
+        }
+
+        stringBuilder.append(" ORDER BY ");
+        for (Iterator<Map.Entry<MovieQueryField, SortOrder>> i = sortMap.entrySet().iterator(); i.hasNext(); ) {
+            Map.Entry entry = i.next();
+            stringBuilder.append(entry.getKey()).append(" ").append(entry.getValue());
+            if (i.hasNext()) {
+                stringBuilder.append(", ");
+            }
+        }
+        logger.debug("Movie buildQuery: {}", stringBuilder.toString());
+        return stringBuilder.toString();
+    }
 }

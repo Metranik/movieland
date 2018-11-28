@@ -1,7 +1,7 @@
 package com.art.movieland.controller.rest;
 
 import com.art.movieland.entity.Movie;
-import com.art.movieland.entity.SortMovie;
+import com.art.movieland.entity.MovieParam;
 import com.art.movieland.service.MovieService;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,8 +10,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
@@ -177,7 +175,7 @@ public class MovieControllerTest {
         movie2.setPicturePath("url2");
 
         // When
-        when(movieService.getByGenre(anyInt(), any(SortMovie.class))).thenReturn(Arrays.asList(movie1, movie2));
+        when(movieService.getByGenre(anyInt(), any(MovieParam.class))).thenReturn(Arrays.asList(movie1, movie2));
 
         // Then
         mockMvc.perform(get("/v1/movie/genre/1"))

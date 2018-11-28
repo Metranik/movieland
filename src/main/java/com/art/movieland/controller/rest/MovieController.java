@@ -1,7 +1,7 @@
 package com.art.movieland.controller.rest;
 
 import com.art.movieland.entity.Movie;
-import com.art.movieland.entity.SortMovie;
+import com.art.movieland.entity.MovieParam;
 import com.art.movieland.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -23,7 +23,7 @@ public class MovieController {
     @GetMapping(path = {"/v1/movie"},
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public List<Movie> getAll(@RequestParam Map requestParam) {
-        return movieService.getAll(new SortMovie(requestParam));
+        return movieService.getAll(new MovieParam(requestParam));
     }
 
     @GetMapping(path = {"/v1/movie/random"},
@@ -36,7 +36,7 @@ public class MovieController {
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public List<Movie> getByGenre(@PathVariable int genreId,
                                   @RequestParam Map requestParam) {
-        return movieService.getByGenre(genreId, new SortMovie(requestParam));
+        return movieService.getByGenre(genreId, new MovieParam(requestParam));
     }
 
 }
