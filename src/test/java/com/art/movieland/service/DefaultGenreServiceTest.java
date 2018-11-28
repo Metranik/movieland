@@ -20,14 +20,9 @@ public class DefaultGenreServiceTest {
 
         List<Genre> expectedGenres = new ArrayList<>();
 
-        Genre genre1 = new Genre();
-        genre1.setId(1);
-        genre1.setName("драма");
+        Genre genre1 = new Genre(1, "драма");
         expectedGenres.add(genre1);
-
-        Genre genre2 = new Genre();
-        genre2.setId(2);
-        genre2.setName("криминал");
+        Genre genre2 = new Genre(2, "криминал");
         expectedGenres.add(genre2);
 
         // When

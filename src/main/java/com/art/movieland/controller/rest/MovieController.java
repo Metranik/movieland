@@ -7,8 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
+
 
 @RestController
 public class MovieController {
@@ -22,8 +23,8 @@ public class MovieController {
 
     @GetMapping(path = {"/v1/movie"},
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public List<Movie> getAll(@RequestParam Map requestParam) {
-        return movieService.getAll(new MovieParam(requestParam));
+    public List<Movie> getAll(@RequestParam LinkedHashMap<String, String> requestParam) {
+        return movieService.getAll(new SortMovie(requestParam));
     }
 
     @GetMapping(path = {"/v1/movie/random"},
@@ -35,8 +36,8 @@ public class MovieController {
     @GetMapping(path = {"/v1/movie/genre/{genreId}"},
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public List<Movie> getByGenre(@PathVariable int genreId,
-                                  @RequestParam Map requestParam) {
-        return movieService.getByGenre(genreId, new MovieParam(requestParam));
+                                  @RequestParam LinkedHashMap<String, String> requestParam) {
+        return movieService.getByGenre(genreId, new SortMovie(requestParam));
     }
 
 }
