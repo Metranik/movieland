@@ -1,0 +1,49 @@
+databaseChangeLog:
+- property:
+    name: int.type
+    value: int
+- preConditions:
+  - or:
+    - and:
+      - dbms:
+          type: "postgresql"
+      - runningAs:
+          username: movieland
+    - and:
+      - dbms:
+          type: "h2"
+      - runningAs:
+          username: sa
+  - not:
+    - tableExists:
+        tableName: users_admin
+        schemaName: public
+  - sqlCheck:
+      expectedResult: 10
+      sql: select count(*) from users;
+
+- changeSet:
+    id: 1
+    author: art
+    changes:
+    - createTable:
+        tableName: users_admin
+        columns:
+        - column:
+            name: id
+            type: ${int.type}
+            autoIncrement: true
+            constraints:
+              primaryKey: true
+              nullable: false
+        - column:
+            name: name
+            type: varchar(100)
+            constraints:
+              nullable: false
+        - column:
+            name: email
+            type: varchar(100)
+        - column:
+            name: nick
+            type: varchar(100)
