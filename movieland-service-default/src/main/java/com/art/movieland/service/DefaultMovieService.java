@@ -14,7 +14,6 @@ public class DefaultMovieService implements MovieService {
 
     private MovieDao movieDao;
 
-    @Value("${app.movieRandomLimit:3}")
     private int movieRandomLimit;
 
     @Autowired
@@ -41,6 +40,7 @@ public class DefaultMovieService implements MovieService {
         return movieRandomLimit;
     }
 
+    @Value("${app.movieRandomLimit:3}")
     public void setMovieRandomLimit(int movieRandomLimit) {
         this.movieRandomLimit = movieRandomLimit;
     }

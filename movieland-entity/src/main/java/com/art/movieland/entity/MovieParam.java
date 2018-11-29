@@ -1,14 +1,9 @@
 package com.art.movieland.entity;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 public class MovieParam {
-    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     private Map<MovieQueryField, SortOrder> sortMap;
 
@@ -19,7 +14,6 @@ public class MovieParam {
                 sortMap.put(MovieQueryField.of(entry.getKey()),
                         SortOrder.of(entry.getValue()));
             }
-            logger.debug("sortMap {}", sortMap);
         }
     }
 

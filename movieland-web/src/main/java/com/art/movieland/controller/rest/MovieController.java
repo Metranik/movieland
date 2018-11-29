@@ -24,7 +24,7 @@ public class MovieController {
     @GetMapping(path = {"/v1/movie"},
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public List<Movie> getAll(@RequestParam LinkedHashMap<String, String> requestParam) {
-        return movieService.getAll(new SortMovie(requestParam));
+        return movieService.getAll(new MovieParam(requestParam));
     }
 
     @GetMapping(path = {"/v1/movie/random"},
@@ -37,7 +37,7 @@ public class MovieController {
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public List<Movie> getByGenre(@PathVariable int genreId,
                                   @RequestParam LinkedHashMap<String, String> requestParam) {
-        return movieService.getByGenre(genreId, new SortMovie(requestParam));
+        return movieService.getByGenre(genreId, new MovieParam(requestParam));
     }
 
 }

@@ -19,7 +19,7 @@ public class GenreController {
         this.genreService = genreService;
     }
 
-    @GetMapping(path = {"/v1/genre", "/v1/genre/json"},
+    @GetMapping(path = {"/v1/genre"},
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public List<Genre> getAll() {
         return genreService.getAll();

@@ -9,10 +9,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Repository
 public class CacheGenreDao implements GenreDao {
@@ -39,9 +36,9 @@ public class CacheGenreDao implements GenreDao {
     @SuppressWarnings("unused")
     public void populateCache() {
         List<Genre> genres = genreDao.getAll();
-        Map<Integer, Genre> populatedCache= new HashMap<>();
+        Map<Integer, Genre> populatedCache = new HashMap<>();
         genres.forEach((genre) -> populatedCache.put(genre.getId(), genre));
-        cache = populatedCache;
+        cache = Collections.unmodifiableMap(populatedCache);
 
         logger.debug("Genres in cache: {}", genres);
     }
