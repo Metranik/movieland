@@ -1,7 +1,7 @@
 package com.art.movieland.controller.rest;
 
 import com.art.movieland.entity.Movie;
-import com.art.movieland.entity.SortMovie;
+import com.art.movieland.entity.MovieParam;
 import com.art.movieland.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
