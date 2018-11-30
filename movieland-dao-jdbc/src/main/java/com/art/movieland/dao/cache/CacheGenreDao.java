@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Repository
 public class CacheGenreDao implements GenreDao {
@@ -17,6 +18,7 @@ public class CacheGenreDao implements GenreDao {
 
     private final GenreDao genreDao;
     private volatile Map<Integer, Genre> cache;
+    private Map<Integer, List<Genre>> cacheByMovie = new ConcurrentHashMap<>();
 
     @Autowired
     public CacheGenreDao(GenreDao genreDao) {
@@ -27,8 +29,22 @@ public class CacheGenreDao implements GenreDao {
     public List<Genre> getAll() {
         List<Genre> genres = new ArrayList<>(cache.values());
 
-        logger.debug("Count genres for getAll: {}", genres.size());
+        logger.debug("Count genres: {}", genres.size());
         return genres;
+    }
+
+    @Override
+    public List<Genre> getByMovie(int movieId) {
+        List<Genre> genresByMovie = cacheByMovie.get(movieId);
+        if (genresByMovie == null) {
+            genresByMovie = genreDao.getByMovie(movieId);
+            cacheByMovie.put(movieId, genresByMovie);
+        }
+
+        logger.debug("Count genresByMovie: {}", genresByMovie.size());
+        logger.trace("Genres: {}", genresByMovie);
+
+        return Collections.unmodifiableList(genresByMovie);
     }
 
     @Scheduled(fixedRateString = "${cache.scheduled.fixedRate.inMilliseconds}")
@@ -40,7 +56,10 @@ public class CacheGenreDao implements GenreDao {
         genres.forEach((genre) -> populatedCache.put(genre.getId(), genre));
         cache = Collections.unmodifiableMap(populatedCache);
 
-        logger.debug("Genres in cache: {}", genres);
+        logger.debug("Genres in cache: {}", genres.size());
+        logger.trace("Genres: {}", genres);
+
+        cacheByMovie.clear();
     }
 
 }

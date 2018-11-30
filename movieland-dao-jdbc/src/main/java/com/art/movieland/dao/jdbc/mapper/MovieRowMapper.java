@@ -12,7 +12,6 @@ public class MovieRowMapper implements RowMapper<Movie> {
 
     @Override
     public Movie mapRow(ResultSet resultSet, int i) throws SQLException {
-
         Movie movie = new Movie();
         movie.setId(resultSet.getInt("id"));
         movie.setNameRussian(resultSet.getString("nameRussian"));
@@ -20,9 +19,10 @@ public class MovieRowMapper implements RowMapper<Movie> {
         movie.setYearOfRelease(resultSet.getInt("yearOfRelease"));
         movie.setRating(resultSet.getDouble("rating"));
         movie.setPrice(resultSet.getDouble("price"));
+        movie.setDescription(resultSet.getString("description"));
         movie.setPicturePath(resultSet.getString("picturePath"));
 
-        logger.debug("Movie {}", movie);
+        logger.trace("Movie {}", movie);
 
         return movie;
     }

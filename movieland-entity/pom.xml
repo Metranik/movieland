@@ -11,4 +11,11 @@
 
     <artifactId>movieland-entity</artifactId>
 
+    <dependencies>
+        <!--  Lombok  -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+    </dependencies>
 </project>

@@ -134,4 +134,10 @@ public class MovieControllerITest {
                 );
     }
 
+    @Test
+    public void testGetById() throws Exception {
+        mockMvc.perform(get("/v1/movie/1"))
+                .andDo(print())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON));
+    }
 }

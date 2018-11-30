@@ -9,6 +9,7 @@ public class Movie {
     private int yearOfRelease;
     private double rating;
     private double price;
+    private String description;
     private String picturePath;
 
     public int getId() {
@@ -59,25 +60,20 @@ public class Movie {
         this.price = price;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public String getPicturePath() {
         return picturePath;
     }
 
     public void setPicturePath(String picturePath) {
         this.picturePath = picturePath;
-    }
-
-    @Override
-    public String toString() {
-        return "Movie{" +
-                "id=" + id +
-                ", nameRussian='" + nameRussian + '\'' +
-                ", nameNative='" + nameNative + '\'' +
-                ", yearOfRelease=" + yearOfRelease +
-                ", rating=" + rating +
-                ", price=" + price +
-                ", picturePath='" + picturePath + '\'' +
-                '}';
     }
 
     @Override
@@ -91,12 +87,12 @@ public class Movie {
                 Double.compare(movie.price, price) == 0 &&
                 Objects.equals(nameRussian, movie.nameRussian) &&
                 Objects.equals(nameNative, movie.nameNative) &&
+                Objects.equals(description, movie.description) &&
                 Objects.equals(picturePath, movie.picturePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nameRussian, nameNative, yearOfRelease, rating, price, picturePath);
+        return Objects.hash(id, nameRussian, nameNative, yearOfRelease, rating, price, description, picturePath);
     }
-
 }

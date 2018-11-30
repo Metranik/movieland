@@ -1,8 +1,11 @@
 package com.art.movieland.controller.rest;
 
 import com.art.movieland.entity.Movie;
+import com.art.movieland.entity.MovieFull;
 import com.art.movieland.entity.MovieParam;
 import com.art.movieland.service.MovieService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -40,4 +43,13 @@ public class MovieController {
         return movieService.getByGenre(genreId, new MovieParam(requestParam));
     }
 
+    @RequestMapping(path = "/v1/movie/{movieId}",
+            method = RequestMethod.GET,
+            produces = "application/json;charset=UTF-8")
+    public MovieFull getById(@PathVariable int movieId) {
+        Logger logger = LoggerFactory.getLogger(getClass());
+        MovieFull movieFull = movieService.getById(movieId);
+        logger.debug("MovieFull getById: {}", movieFull);
+        return movieFull;
+    }
 }
