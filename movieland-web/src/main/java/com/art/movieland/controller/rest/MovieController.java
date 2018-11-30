@@ -16,6 +16,7 @@ import java.util.List;
 
 @RestController
 public class MovieController {
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     private MovieService movieService;
 
@@ -43,11 +44,9 @@ public class MovieController {
         return movieService.getByGenre(genreId, new MovieParam(requestParam));
     }
 
-    @RequestMapping(path = "/v1/movie/{movieId}",
-            method = RequestMethod.GET,
-            produces = "application/json;charset=UTF-8")
+    @GetMapping(path = "/v1/movie/{movieId}",
+            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public MovieFull getById(@PathVariable int movieId) {
-        Logger logger = LoggerFactory.getLogger(getClass());
         MovieFull movieFull = movieService.getById(movieId);
         logger.debug("MovieFull getById: {}", movieFull);
         return movieFull;

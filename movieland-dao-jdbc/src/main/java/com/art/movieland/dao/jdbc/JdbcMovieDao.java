@@ -25,7 +25,7 @@ public class JdbcMovieDao implements MovieDao {
             "FROM movie m " +
             "JOIN poster p ON m.id = p.movieId " +
             "WHERE RANDOM() < 0.5 LIMIT ?";
-    private static final String GET_MOVIES_BY_GENRE = "SELECT m.id, m.nameRussian, m.nameNative, m.yearOfRelease, m.rating, m.price, p.picturePath " +
+    private static final String GET_MOVIES_BY_GENRE = "SELECT m.id, m.nameRussian, m.nameNative, m.yearOfRelease, m.rating, m.price, m.description, p.picturePath " +
             "FROM movie m " +
             "JOIN poster p ON m.id = p.movieId " +
             "JOIN movie_to_genre mg ON m.id = mg.movieId " +

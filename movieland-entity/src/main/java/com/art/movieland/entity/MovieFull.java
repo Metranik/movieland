@@ -4,7 +4,7 @@ import lombok.Data;
 
 import java.util.List;
 
-//@Data
+@Data
 @SuppressWarnings("unused")
 public class MovieFull {
     private int id;
@@ -42,20 +42,4 @@ public class MovieFull {
         this.reviews = reviews;
     }
 
-    @Override
-    public String toString() {
-        return "MovieFull{" +
-                "id=" + id +
-                ", nameRussian='" + nameRussian + '\'' +
-                ", nameNative='" + nameNative + '\'' +
-                ", yearOfRelease=" + yearOfRelease +
-                ", rating=" + rating +
-                ", price=" + price +
-                ", description='" + description + '\'' +
-                ", picturePath='" + picturePath + '\'' +
-                ", countries=" + countries +
-                ", genres=" + genres +
-                ", reviews=" + reviews +
-                '}';
-    }
 }
