@@ -38,6 +38,11 @@
             <artifactId>movieland-service-default</artifactId>
             <version>${movieland.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.art</groupId>
+            <artifactId>movieland-entity</artifactId>
+            <version>${movieland.version}</version>
+        </dependency>
         <!--  Spring  -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -62,6 +67,11 @@
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
+        </dependency>
+        <!-- modelmapper -->
+        <dependency>
+            <groupId>org.modelmapper</groupId>
+            <artifactId>modelmapper</artifactId>
         </dependency>
         <!--  Test  -->
         <dependency>

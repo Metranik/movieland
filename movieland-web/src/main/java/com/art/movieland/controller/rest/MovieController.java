@@ -1,9 +1,12 @@
 package com.art.movieland.controller.rest;
 
+import com.art.movieland.controller.converter.DtoConverter;
 import com.art.movieland.entity.Movie;
-import com.art.movieland.entity.MovieFull;
 import com.art.movieland.entity.MovieParam;
+import com.art.movieland.entity.dto.MovieDto;
+import com.art.movieland.entity.dto.Views;
 import com.art.movieland.service.MovieService;
+import com.fasterxml.jackson.annotation.JsonView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +19,8 @@ import java.util.List;
 
 @RestController
 public class MovieController {
+    private static final DtoConverter DTO_CONVERTER = new DtoConverter();
+
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
     private MovieService movieService;
@@ -46,9 +51,10 @@ public class MovieController {
 
     @GetMapping(path = "/v1/movie/{movieId}",
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public MovieFull getById(@PathVariable int movieId) {
-        MovieFull movieFull = movieService.getById(movieId);
-        logger.debug("MovieFull getById: {}", movieFull);
-        return movieFull;
+    @JsonView(Views.DetailedMovie.class)
+    public MovieDto getById(@PathVariable int movieId) {
+        Movie movie = movieService.getById(movieId);
+        logger.debug("Movie getById: {}", movie);
+        return DTO_CONVERTER.convertToDto(movie);
     }
 }
