@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-@SuppressWarnings("unused")
 public class DefaultGenreService implements GenreService {
 
     private GenreDao genreDao;

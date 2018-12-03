@@ -11,8 +11,9 @@ import java.util.List;
 
 @Repository
 public class JdbcReviewDao implements ReviewDao {
-    private static final String GET_REVIEWS_BY_MOVIE = "SELECT r.id, r.movieId, r.userId, r.comment " +
+    private static final String GET_REVIEWS_BY_MOVIE = "SELECT r.id, r.userId, r.comment, u.name " +
             "FROM review r " +
+            "JOIN users u ON u.id = r.userId " +
             "WHERE movieId = ?";
     private static final ReviewRowMapper REVIEW_ROW_MAPPER = new ReviewRowMapper();
 

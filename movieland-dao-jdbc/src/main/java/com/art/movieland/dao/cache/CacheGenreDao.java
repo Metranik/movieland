@@ -44,12 +44,11 @@ public class CacheGenreDao implements GenreDao {
         logger.debug("Count genresByMovie: {}", genresByMovie.size());
         logger.trace("Genres: {}", genresByMovie);
 
-        return Collections.unmodifiableList(genresByMovie);
+        return new ArrayList(genresByMovie);
     }
 
     @Scheduled(fixedRateString = "${cache.scheduled.fixedRate.inMilliseconds}")
     @PostConstruct
-    @SuppressWarnings("unused")
     public void populateCache() {
         List<Genre> genres = genreDao.getAll();
         Map<Integer, Genre> populatedCache = new HashMap<>();

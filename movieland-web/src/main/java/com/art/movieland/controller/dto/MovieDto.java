@@ -1,4 +1,4 @@
-package com.art.movieland.entity.dto;
+package com.art.movieland.controller.dto;
 
 import com.art.movieland.entity.Country;
 import com.art.movieland.entity.Genre;
@@ -6,7 +6,9 @@ import com.art.movieland.entity.Review;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Data
 public class MovieDto {

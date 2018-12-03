@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-@SuppressWarnings("unused")
 public class DefaultUserService implements UserService{
     private UserDao userDao;
 

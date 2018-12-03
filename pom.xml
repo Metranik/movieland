@@ -35,6 +35,20 @@
                     <value>${profile.main}</value>
                 </property>
             </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>3.0.0-M1</version>
+                        <configuration>
+                            <excludes>
+                                <exclude>**/*Test.java</exclude>
+                            </excludes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
             <properties>
                 <spring.profiles.active>${profile.main}</spring.profiles.active>
                 <log4j.level>${log4j.level.debug}</log4j.level>
@@ -51,7 +65,7 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
-                 </configuration>
+                </configuration>
             </plugin>
         </plugins>
     </build>
@@ -94,12 +108,18 @@
                 <artifactId>liquibase-core</artifactId>
                 <version>3.6.2</version>
             </dependency>
-            <!--  JSON  -->
+            <!--  GSON  -->
             <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>2.8.5</version>
+            </dependency>
+            <!--  JSON  -->
+            <!--dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
                 <version>2.9.7</version>
-            </dependency>
+            </dependency-->
             <!--  YAML  -->
             <dependency>
                 <groupId>org.yaml</groupId>
