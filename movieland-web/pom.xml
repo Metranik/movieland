@@ -10,6 +10,21 @@
     </parent>
 
     <artifactId>movieland-web</artifactId>
+    <packaging>war</packaging>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <path>/</path>
+                    <port>8080</port>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
     <dependencies>
         <!-- movieland -->
@@ -23,6 +38,11 @@
             <artifactId>movieland-service-default</artifactId>
             <version>${movieland.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.art</groupId>
+            <artifactId>movieland-entity</artifactId>
+            <version>${movieland.version}</version>
+        </dependency>
         <!--  Spring  -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -33,20 +53,25 @@
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
         </dependency>
-        <!--  YAML  -->
-        <dependency>
-            <groupId>org.yaml</groupId>
-            <artifactId>snakeyaml</artifactId>
-        </dependency>
         <!--  JSON  -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
         </dependency>
+        <!--  YAML  -->
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+        </dependency>
         <!--  Log  -->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
+        </dependency>
+        <!-- modelmapper -->
+        <dependency>
+            <groupId>org.modelmapper</groupId>
+            <artifactId>modelmapper</artifactId>
         </dependency>
         <!--  Test  -->
         <dependency>

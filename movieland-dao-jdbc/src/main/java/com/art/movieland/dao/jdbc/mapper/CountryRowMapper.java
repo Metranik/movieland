@@ -1,7 +1,6 @@
 package com.art.movieland.dao.jdbc.mapper;
 
-import com.art.movieland.entity.Genre;
-
+import com.art.movieland.entity.Country;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.RowMapper;
@@ -9,19 +8,17 @@ import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class GenreRowMapper implements RowMapper<Genre> {
+public class CountryRowMapper implements RowMapper<Country> {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
-    public Genre mapRow(ResultSet resultSet, int i) throws SQLException {
-
-        Genre genre = new Genre(
+    public Country mapRow(ResultSet resultSet, int i) throws SQLException {
+        Country country = new Country(
                 resultSet.getInt("id"),
                 resultSet.getString("name"));
 
-        logger.trace("Genre {}", genre);
+        logger.trace("Country {}", country);
 
-        return genre;
+        return country;
     }
 }
-

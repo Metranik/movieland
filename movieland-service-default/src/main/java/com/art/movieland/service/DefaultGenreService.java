@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-@SuppressWarnings("unused")
 public class DefaultGenreService implements GenreService {
 
     private GenreDao genreDao;
@@ -22,5 +21,10 @@ public class DefaultGenreService implements GenreService {
     @Override
     public List<Genre> getAll() {
         return genreDao.getAll();
+    }
+
+    @Override
+    public List<Genre> getByMovie(int movieId) {
+        return genreDao.getByMovie(movieId);
     }
 }

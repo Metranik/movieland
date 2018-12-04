@@ -32,7 +32,7 @@ public class MovieControllerITest {
     private WebApplicationContext webApplicationContext;
 
     @Before
-    public void setup() {
+    public void setUp() {
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
     }
 
@@ -134,4 +134,29 @@ public class MovieControllerITest {
                 );
     }
 
+    @Test
+    public void testGetById() throws Exception {
+        mockMvc.perform(get("/v1/movie/1"))
+                .andDo(print())
+                .andExpect(
+                        matchAll(
+                                content().contentType(MediaType.APPLICATION_JSON_UTF8),
+                                jsonPath("$.id", equalTo(1)),
+                                jsonPath("$.nameRussian", equalTo("Побег из Шоушенка")),
+                                jsonPath("$.nameNative", equalTo("The Shawshank Redemption")),
+                                jsonPath("$.yearOfRelease", equalTo(1994)),
+                                jsonPath("$.rating", equalTo(8.9)),
+                                jsonPath("$.price", equalTo(123.45)),
+                                jsonPath("$.picturePath", equalTo("https://images-na.ssl-images-amazon.com/images/M/MV5BODU4MjU4NjIwNl5BMl5BanBnXkFtZTgwMDU2MjEyMDE@._V1._SY209_CR0,0,140,209_.jpg")),
+                                jsonPath("$.countries", hasSize(1)),
+                                jsonPath("$.countries[0].name", equalTo("США")),
+                                jsonPath("$.genres", hasSize(2)),
+                                jsonPath("$.reviews", hasSize(2)),
+                                jsonPath("$.reviews[0].user.name", equalTo("Дарлин Эдвардс")),
+                                jsonPath("$.reviews[0].comment", notNullValue()),
+                                jsonPath("$.reviews[1].user.name", equalTo("Габриэль Джексон")),
+                                jsonPath("$.reviews[1].comment", notNullValue())
+                        )
+                );
+    }
 }

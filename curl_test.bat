@@ -1,0 +1,1 @@
+curl -v "http://localhost:8080/v1/movie/1" > curl_test.log

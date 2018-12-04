@@ -6,19 +6,27 @@ import com.art.movieland.entity.MovieParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
-@SuppressWarnings("unused")
 public class DefaultMovieService implements MovieService {
-
     private MovieDao movieDao;
+    private CountryService countryService;
+    private GenreService genreService;
+    private ReviewService reviewService;
 
     private int movieRandomLimit;
 
     @Autowired
-    public DefaultMovieService(MovieDao movieDao) {
+    public DefaultMovieService(MovieDao movieDao,
+                               CountryService countryService,
+                               GenreService genreService,
+                               ReviewService reviewService) {
         this.movieDao = movieDao;
+        this.countryService = countryService;
+        this.genreService = genreService;
+        this.reviewService = reviewService;
     }
 
     @Override
@@ -34,6 +42,15 @@ public class DefaultMovieService implements MovieService {
     @Override
     public List<Movie> getByGenre(int genreId, MovieParam movieParam) {
         return movieDao.getByGenre(genreId, movieParam);
+    }
+
+    @Override
+    public Movie getById(int id) {
+        Movie movie = movieDao.getById(id);
+        movie.setCountries(countryService.getByMovie(id));
+        movie.setGenres(genreService.getByMovie(id));
+        movie.setReviews(reviewService.getByMovie(id));
+        return movie;
     }
 
     public int getMovieRandomLimit() {

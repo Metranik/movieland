@@ -13,7 +13,7 @@
 
     <groupId>com.art</groupId>
     <artifactId>movieland</artifactId>
-    <version>${movieland.version}</version>
+    <version>0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <modules>
@@ -35,6 +35,20 @@
                     <value>${profile.main}</value>
                 </property>
             </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>3.0.0-M1</version>
+                        <configuration>
+                            <excludes>
+                                <exclude>**/*Test.java</exclude>
+                            </excludes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
             <properties>
                 <spring.profiles.active>${profile.main}</spring.profiles.active>
                 <log4j.level>${log4j.level.debug}</log4j.level>
@@ -47,7 +61,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.3</version>
+                <version>3.8.0</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
@@ -94,23 +108,35 @@
                 <artifactId>liquibase-core</artifactId>
                 <version>3.6.2</version>
             </dependency>
-            <!--  YAML  -->
-            <dependency>
-                <groupId>org.yaml</groupId>
-                <artifactId>snakeyaml</artifactId>
-                <version>1.23</version>
-            </dependency>
             <!--  JSON  -->
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
                 <version>2.9.7</version>
             </dependency>
+            <!--  YAML  -->
+            <dependency>
+                <groupId>org.yaml</groupId>
+                <artifactId>snakeyaml</artifactId>
+                <version>1.23</version>
+            </dependency>
             <!--  Log  -->
             <dependency>
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
                 <version>1.2.3</version>
+            </dependency>
+            <!--  Lombok  -->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.18.4</version>
+            </dependency>
+            <!-- modelmapper -->
+            <dependency>
+                <groupId>org.modelmapper</groupId>
+                <artifactId>modelmapper</artifactId>
+                <version>2.3.2</version>
             </dependency>
             <!--  Test  -->
             <dependency>
