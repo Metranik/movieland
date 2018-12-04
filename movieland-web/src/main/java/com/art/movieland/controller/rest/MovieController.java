@@ -48,7 +48,6 @@ public class MovieController {
 
     @GetMapping(path = "/v1/movie/{movieId}",
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    @JsonView(Views.DetailedMovie.class)
     public MovieDto getById(@PathVariable int movieId) {
         Movie movie = movieService.getById(movieId);
         logger.debug("Movie getById: {}", movie);
