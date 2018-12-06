@@ -20,4 +20,9 @@ public class DefaultCountryService implements CountryService {
     public List<Country> getByMovie(int movieId) {
         return countryDao.getByMovie(movieId);
     }
+
+    @Override
+    public List<Country> getAll() {
+        return countryDao.getAll();
+    }
 }

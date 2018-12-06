@@ -15,6 +15,7 @@ public class JdbcCountryDao implements CountryDao {
             "FROM country c " +
             "JOIN movie_to_country mc ON c.id = mc.countryId " +
             "WHERE mc.movieId = ?";
+    private static final String GET_ALL_COUNTRIES = "SELECT c.id, c.name FROM country c";
     private static final CountryRowMapper COUNTRY_ROW_MAPPER = new CountryRowMapper();
 
     private JdbcTemplate jdbcTemplate;
@@ -27,6 +28,11 @@ public class JdbcCountryDao implements CountryDao {
     @Override
     public List<Country> getByMovie(int movieId) {
         return jdbcTemplate.query(GET_COUNTRIES_BY_MOVIE, COUNTRY_ROW_MAPPER, movieId);
+    }
+
+    @Override
+    public List<Country> getAll() {
+       return jdbcTemplate.query(GET_ALL_COUNTRIES, COUNTRY_ROW_MAPPER);
     }
 }
 
