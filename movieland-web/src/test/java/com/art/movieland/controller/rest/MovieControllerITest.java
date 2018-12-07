@@ -32,7 +32,7 @@ public class MovieControllerITest {
     private WebApplicationContext webApplicationContext;
 
     @Before
-    public void setUp() {
+    public void setup() {
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
     }
 
