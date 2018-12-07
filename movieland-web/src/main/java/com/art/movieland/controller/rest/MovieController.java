@@ -48,8 +48,9 @@ public class MovieController {
 
     @GetMapping(path = "/v1/movie/{movieId}",
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public MovieDto getById(@PathVariable int movieId) {
-        Movie movie = movieService.getById(movieId);
+    public MovieDto getById(@PathVariable int movieId,
+                            @RequestParam LinkedHashMap<String, String> requestParam) {
+        Movie movie = movieService.getById(movieId, new MovieParam(requestParam));
         logger.debug("Movie getById: {}", movie);
         return DtoConverter.convertToDto(movie);
     }

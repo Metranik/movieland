@@ -1,16 +1,23 @@
 package com.art.movieland.entity;
 
-public enum SortOrder {
-    ASC,
-    DESC;
+import java.util.Optional;
 
-    public static SortOrder of(String name) {
-        if (name == null || name.equalsIgnoreCase(SortOrder.ASC.toString())){
-            return SortOrder.ASC;
-        }else if (name.equalsIgnoreCase(SortOrder.DESC.toString())){
-            return SortOrder.DESC;
-        }else {
-            throw new IllegalArgumentException(name);
+public enum SortOrder {
+    ASC("ASC"),
+    DESC("ASC");
+
+    private String value;
+
+    SortOrder(String value) {
+        this.value = value;
+    }
+
+    public static Optional<SortOrder> of(String name) {
+        for (SortOrder sortOrder : SortOrder.values()) {
+            if (sortOrder.value.equalsIgnoreCase(name)) {
+                return Optional.of(sortOrder);
+            }
         }
+        return Optional.empty();
     }
 }

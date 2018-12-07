@@ -159,4 +159,26 @@ public class MovieControllerITest {
                         )
                 );
     }
+
+    @Test
+    public void testGetMovieByIdEur() throws Exception {
+        mockMvc.perform(get("/v1/movie/1?currency=EUR"))
+                .andDo(print())
+                .andExpect(
+                        matchAll(
+                                status().isOk(),
+                                content().contentType(MediaType.APPLICATION_JSON_UTF8),
+                                jsonPath("$.id", equalTo(1)),
+                                jsonPath("$.nameRussian", equalTo("Побег из Шоушенка")),
+                                jsonPath("$.nameNative", equalTo("The Shawshank Redemption")),
+                                jsonPath("$.yearOfRelease", equalTo(1994)),
+                                jsonPath("$.rating", equalTo(8.9)),
+                                jsonPath("$.price", notNullValue()),
+                                jsonPath("$.picturePath", equalTo("https://images-na.ssl-images-amazon.com/images/M/MV5BODU4MjU4NjIwNl5BMl5BanBnXkFtZTgwMDU2MjEyMDE@._V1._SY209_CR0,0,140,209_.jpg")),
+                                jsonPath("$.countries", hasSize(1)),
+                                jsonPath("$.genres", hasSize(2)),
+                                jsonPath("$.reviews", hasSize(2))
+                        )
+                );
+    }
 }
