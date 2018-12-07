@@ -4,7 +4,6 @@ import lombok.Data;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 @Data
 public class MovieParam {
@@ -13,7 +12,7 @@ public class MovieParam {
     private Currency currency = Currency.UAH;
 
     public MovieParam(Map<String, String> requestParam) {
-        if (requestParam==null){
+        if (requestParam == null) {
             return;
         }
         for (Map.Entry<String, String> entry : requestParam.entrySet()) {

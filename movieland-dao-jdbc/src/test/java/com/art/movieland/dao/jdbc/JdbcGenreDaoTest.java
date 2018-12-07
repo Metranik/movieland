@@ -22,22 +22,22 @@ public class JdbcGenreDaoTest {
 
         List<Genre> expectedGenres = new ArrayList<>();
 
-        Genre genre1 = new Genre(1,"драма");
+        Genre genre1 = new Genre(1, "драма");
         expectedGenres.add(genre1);
 
-        Genre genre2 = new Genre(2,"криминал");
+        Genre genre2 = new Genre(2, "криминал");
         expectedGenres.add(genre2);
 
         // When
-        when(jdbcTemplate.query(any(String.class),any(GenreRowMapper.class))).thenReturn(expectedGenres);
+        when(jdbcTemplate.query(any(String.class), any(GenreRowMapper.class))).thenReturn(expectedGenres);
 
         // Then
         List<Genre> actualGenres = genreDao.getAll();
 
         assertEquals(expectedGenres.size(), actualGenres.size());
 
-        assertEquals(expectedGenres.get(0),actualGenres.get(0));
-        assertEquals(expectedGenres.get(1),actualGenres.get(1));
+        assertEquals(expectedGenres.get(0), actualGenres.get(0));
+        assertEquals(expectedGenres.get(1), actualGenres.get(1));
     }
 
 }

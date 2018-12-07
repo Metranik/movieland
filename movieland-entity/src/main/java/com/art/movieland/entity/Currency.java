@@ -21,4 +21,8 @@ public enum Currency {
         }
         return Optional.empty();
     }
+
+    public String getValue() {
+        return value;
+    }
 }

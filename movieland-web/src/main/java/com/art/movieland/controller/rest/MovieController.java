@@ -1,12 +1,10 @@
 package com.art.movieland.controller.rest;
 
 import com.art.movieland.controller.converter.DtoConverter;
+import com.art.movieland.controller.dto.MovieDto;
 import com.art.movieland.entity.Movie;
 import com.art.movieland.entity.MovieParam;
-import com.art.movieland.controller.dto.MovieDto;
-import com.art.movieland.controller.dto.Views;
 import com.art.movieland.service.MovieService;
-import com.fasterxml.jackson.annotation.JsonView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

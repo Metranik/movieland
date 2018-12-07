@@ -3,7 +3,6 @@ package com.art.movieland.service;
 import com.art.movieland.dao.MovieDao;
 import com.art.movieland.entity.Movie;
 import com.art.movieland.entity.MovieParam;
-import org.apache.commons.math3.util.Precision;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -54,8 +53,7 @@ public class DefaultMovieService implements MovieService {
         movie.setCountries(countryService.getByMovie(id));
         movie.setGenres(genreService.getByMovie(id));
         movie.setReviews(reviewService.getByMovie(id));
-        float rate = currencyService.getRate(movieParam.getCurrency());
-        movie.setPrice(Precision.round(movie.getPrice() / rate, 2));
+        movie.setPrice(movie.getPrice() / currencyService.getRate(movieParam.getCurrency()));
         return movie;
     }
 

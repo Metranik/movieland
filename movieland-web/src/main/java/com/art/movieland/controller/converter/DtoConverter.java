@@ -1,7 +1,7 @@
 package com.art.movieland.controller.converter;
 
-import com.art.movieland.entity.Movie;
 import com.art.movieland.controller.dto.MovieDto;
+import com.art.movieland.entity.Movie;
 import org.modelmapper.ModelMapper;
 
 public class DtoConverter {

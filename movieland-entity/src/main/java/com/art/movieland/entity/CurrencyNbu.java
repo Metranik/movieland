@@ -1,26 +1,23 @@
 package com.art.movieland.entity;
 
+import com.art.movieland.entity.converter.LocalDateToStringConverter;
+import com.art.movieland.entity.converter.StringToLocalDateConverter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CurrencyNbu {
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("d.MM.yyyy");
-
-    private float rate;
+    private double rate;
     @JsonProperty("cc")
     private String currencyCode;
     @JsonProperty("exchangedate")
-    private String exchangeDateString;
+    @JsonSerialize(converter = LocalDateToStringConverter.class)
+    @JsonDeserialize(converter = StringToLocalDateConverter.class)
     private LocalDate exchangeDate;
-
-    public void setExchangeDateString(String exchangeDateString) {
-        this.exchangeDateString = exchangeDateString;
-        this.exchangeDate = LocalDate.parse(exchangeDateString, FORMATTER);
-    }
 }

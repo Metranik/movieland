@@ -4,17 +4,17 @@ databaseChangeLog:
     author: art
     changes:
     - insert:
-          tableName: users_admin
-          columns:
-          - column:
-                name: id
-                valueNumeric: 1
-          - column:
-                name: name
-                value: 'Рональд Рейнольдс'
-          - column:
-                name: email
-                value: 'ronald.reynolds66@example.com'
-          - column:
-                name: nick
-                value: 'paco'
+        tableName: users_admin
+        columns:
+        - column:
+            name: id
+            valueNumeric: 1
+        - column:
+            name: name
+            value: 'Рональд Рейнольдс'
+        - column:
+            name: email
+            value: 'ronald.reynolds66@example.com'
+        - column:
+            name: nick
+            value: 'paco'

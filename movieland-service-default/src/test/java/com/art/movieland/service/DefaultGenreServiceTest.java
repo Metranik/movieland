@@ -1,6 +1,5 @@
 package com.art.movieland.service;
 
-import com.art.movieland.dao.GenreDao;
 import com.art.movieland.entity.Genre;
 import org.junit.Test;
 
@@ -31,10 +30,10 @@ public class DefaultGenreServiceTest {
         // Then
         List<Genre> actualGenres = genreService.getAll();
 
-        assertEquals(expectedGenres.size(),actualGenres.size());
+        assertEquals(expectedGenres.size(), actualGenres.size());
 
-        assertEquals(expectedGenres.get(0),actualGenres.get(0));
-        assertEquals(expectedGenres.get(1),actualGenres.get(1));
+        assertEquals(expectedGenres.get(0), actualGenres.get(0));
+        assertEquals(expectedGenres.get(1), actualGenres.get(1));
     }
 
 }
