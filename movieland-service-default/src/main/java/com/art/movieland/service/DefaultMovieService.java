@@ -15,6 +15,7 @@ public class DefaultMovieService implements MovieService {
     private CountryService countryService;
     private GenreService genreService;
     private ReviewService reviewService;
+    private CurrencyService currencyService;
 
     private int movieRandomLimit;
 
@@ -22,16 +23,18 @@ public class DefaultMovieService implements MovieService {
     public DefaultMovieService(MovieDao movieDao,
                                CountryService countryService,
                                GenreService genreService,
-                               ReviewService reviewService) {
+                               ReviewService reviewService,
+                               CurrencyService currencyService) {
         this.movieDao = movieDao;
         this.countryService = countryService;
         this.genreService = genreService;
         this.reviewService = reviewService;
+        this.currencyService = currencyService;
     }
 
     @Override
     public List<Movie> getAll(MovieParam movieParam) {
-         return movieDao.getAll(movieParam);
+        return movieDao.getAll(movieParam);
     }
 
     @Override
@@ -45,11 +48,12 @@ public class DefaultMovieService implements MovieService {
     }
 
     @Override
-    public Movie getById(int id) {
+    public Movie getById(int id, MovieParam movieParam) {
         Movie movie = movieDao.getById(id);
         movie.setCountries(countryService.getByMovie(id));
         movie.setGenres(genreService.getByMovie(id));
         movie.setReviews(reviewService.getByMovie(id));
+        movie.setPrice(movie.getPrice() / currencyService.getRate(movieParam.getCurrency()));
         return movie;
     }
 

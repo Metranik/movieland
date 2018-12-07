@@ -18,19 +18,15 @@ import java.util.Arrays;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.ResultMatcher.matchAll;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class GenreControllerTest {
-    private MockMvc mockMvc;
-
     @InjectMocks
     GenreController genreController;
-
     @Mock
     GenreService genreService;
+    private MockMvc mockMvc;
 
     @Before
     public void setup() throws Exception {

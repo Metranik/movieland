@@ -1,6 +1,5 @@
 package com.art.movieland.service;
 
-import com.art.movieland.dao.MovieDao;
 import com.art.movieland.entity.Movie;
 import org.junit.Test;
 
@@ -49,8 +48,8 @@ public class DefaultMovieServiceTest {
 
         assertEquals(expectedMovies.size(), actualMovies.size());
 
-        assertEquals(expectedMovies.get(0),actualMovies.get(0));
-        assertEquals(expectedMovies.get(1),actualMovies.get(1));
+        assertEquals(expectedMovies.get(0), actualMovies.get(0));
+        assertEquals(expectedMovies.get(1), actualMovies.get(1));
     }
 
     @Test
@@ -98,9 +97,9 @@ public class DefaultMovieServiceTest {
 
         assertEquals(expectedMovies.size(), actualMovies.size());
 
-        assertEquals(expectedMovies.get(0),actualMovies.get(0));
-        assertEquals(expectedMovies.get(1),actualMovies.get(1));
-        assertEquals(expectedMovies.get(2),actualMovies.get(2));
+        assertEquals(expectedMovies.get(0), actualMovies.get(0));
+        assertEquals(expectedMovies.get(1), actualMovies.get(1));
+        assertEquals(expectedMovies.get(2), actualMovies.get(2));
     }
 
 }

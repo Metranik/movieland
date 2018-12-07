@@ -32,7 +32,7 @@ public class JdbcCountryDao implements CountryDao {
 
     @Override
     public List<Country> getAll() {
-       return jdbcTemplate.query(GET_ALL_COUNTRIES, COUNTRY_ROW_MAPPER);
+        return jdbcTemplate.query(GET_ALL_COUNTRIES, COUNTRY_ROW_MAPPER);
     }
 }
 

@@ -4,10 +4,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
@@ -156,6 +156,28 @@ public class MovieControllerITest {
                                 jsonPath("$.reviews[0].comment", notNullValue()),
                                 jsonPath("$.reviews[1].user.name", equalTo("Габриэль Джексон")),
                                 jsonPath("$.reviews[1].comment", notNullValue())
+                        )
+                );
+    }
+
+    @Test
+    public void testGetMovieByIdEur() throws Exception {
+        mockMvc.perform(get("/v1/movie/1?currency=EUR"))
+                .andDo(print())
+                .andExpect(
+                        matchAll(
+                                status().isOk(),
+                                content().contentType(MediaType.APPLICATION_JSON_UTF8),
+                                jsonPath("$.id", equalTo(1)),
+                                jsonPath("$.nameRussian", equalTo("Побег из Шоушенка")),
+                                jsonPath("$.nameNative", equalTo("The Shawshank Redemption")),
+                                jsonPath("$.yearOfRelease", equalTo(1994)),
+                                jsonPath("$.rating", equalTo(8.9)),
+                                jsonPath("$.price", notNullValue()),
+                                jsonPath("$.picturePath", equalTo("https://images-na.ssl-images-amazon.com/images/M/MV5BODU4MjU4NjIwNl5BMl5BanBnXkFtZTgwMDU2MjEyMDE@._V1._SY209_CR0,0,140,209_.jpg")),
+                                jsonPath("$.countries", hasSize(1)),
+                                jsonPath("$.genres", hasSize(2)),
+                                jsonPath("$.reviews", hasSize(2))
                         )
                 );
     }

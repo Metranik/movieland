@@ -31,15 +31,15 @@ public class JdbcCountryDaoTest {
         expectedCountries.add(country2);
 
         // When
-        when(jdbcTemplate.query(any(String.class),any(CountryRowMapper.class),anyInt())).thenReturn(expectedCountries);
+        when(jdbcTemplate.query(any(String.class), any(CountryRowMapper.class), anyInt())).thenReturn(expectedCountries);
 
         // Then
         List<Country> actualCountries = countryDao.getByMovie(1);
 
         assertEquals(expectedCountries.size(), actualCountries.size());
 
-        assertEquals(expectedCountries.get(0),actualCountries.get(0));
-        assertEquals(expectedCountries.get(1),actualCountries.get(1));
+        assertEquals(expectedCountries.get(0), actualCountries.get(0));
+        assertEquals(expectedCountries.get(1), actualCountries.get(1));
     }
 
     @Test

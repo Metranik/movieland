@@ -2,7 +2,10 @@ package com.art.movieland.dao.jdbc;
 
 import com.art.movieland.dao.MovieDao;
 import com.art.movieland.dao.jdbc.mapper.MovieRowMapper;
-import com.art.movieland.entity.*;
+import com.art.movieland.entity.Movie;
+import com.art.movieland.entity.MovieParam;
+import com.art.movieland.entity.MovieQueryField;
+import com.art.movieland.entity.SortOrder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

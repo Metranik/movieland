@@ -26,13 +26,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(MockitoJUnitRunner.class)
 public class MovieControllerTest {
-    private MockMvc mockMvc;
-
     @InjectMocks
     MovieController movieController;
-
     @Mock
     MovieService movieService;
+    private MockMvc mockMvc;
 
     @Before
     public void setup() throws Exception {
