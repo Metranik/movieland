@@ -3,8 +3,8 @@ package com.art.movieland.entity;
 import java.util.Optional;
 
 public enum MovieQueryField {
-    RATING("RATING"),
-    PRICE("PRICE");
+    RATING("rating"),
+    PRICE("price");
 
     private String value;
 

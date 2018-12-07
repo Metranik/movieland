@@ -54,7 +54,7 @@ public class DefaultMovieService implements MovieService {
         movie.setCountries(countryService.getByMovie(id));
         movie.setGenres(genreService.getByMovie(id));
         movie.setReviews(reviewService.getByMovie(id));
-        float rate = currencyService.getRate(movieParam.getCurrency();
+        float rate = currencyService.getRate(movieParam.getCurrency());
         movie.setPrice(Precision.round(movie.getPrice() / rate, 2));
         return movie;
     }

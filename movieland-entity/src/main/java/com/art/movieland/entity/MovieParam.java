@@ -13,6 +13,9 @@ public class MovieParam {
     private Currency currency = Currency.UAH;
 
     public MovieParam(Map<String, String> requestParam) {
+        if (requestParam==null){
+            return;
+        }
         for (Map.Entry<String, String> entry : requestParam.entrySet()) {
             String key = entry.getKey();
             String value = entry.getValue();

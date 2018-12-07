@@ -3,8 +3,8 @@ package com.art.movieland.entity;
 import java.util.Optional;
 
 public enum SortOrder {
-    ASC("ASC"),
-    DESC("ASC");
+    ASC("asc"),
+    DESC("desc");
 
     private String value;
 
