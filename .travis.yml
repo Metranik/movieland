@@ -2,12 +2,13 @@ language: java
 
 addons:
   sonarcloud:
-    organization: "metranik-github"
+    projectKey: Metranik_movieland
+    organization: metranik-github
     token:
       secure: 053d1965853a44cdc8f456ef294029cadc3a64a4
 script:
   # build the project, runs the tests with coverage and then execute the SonarCloud analysis
-  - mvn clean install sonar:sonar
+  - mvn clean install sonar:sonar -Dsonar.host.url=https://sonarcloud.io
   
 branches:
   only:
