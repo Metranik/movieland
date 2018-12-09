@@ -1,0 +1,24 @@
+# Datasource
+datasource:
+  driver: org.postgresql.Driver
+  url: jdbc:postgresql://localhost:5432/movieland
+  user: movieland
+  password: m
+  dbcp2:
+    initialSize: 1
+    maxTotal: 3
+# SQL
+sql:
+  movieRandomLimit:3
+# Cache
+cache:
+  scheduled:
+    fixedRate.inHours: 4
+# liquibase
+liquibase:
+  changelog.yaml: classpath:db/changelog/db.changelog.yaml
+# CurrencyService
+nbu:
+  statService:
+    url: https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json
+    cron: 0 1 9,18 * * MON-FRI
