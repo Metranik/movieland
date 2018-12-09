@@ -74,7 +74,7 @@
                 <version>3.0.0</version>
                 <executions>
                     <execution>
-                        <phase>verify</phase>
+                        <phase>deploy</phase>
                         <goals>
                             <goal>check</goal>
                             <goal>checkstyle</goal>
@@ -83,7 +83,6 @@
                 </executions>
                 <configuration>
                     <configLocation>google_checks.xml</configLocation>
-                    <logViolationsToConsole>true</logViolationsToConsole>
                     <consoleOutput>true</consoleOutput>
                     <outputFile>${project.build.directory}/site/checkstyle/checkstyle-result.xml</outputFile>
                     <cacheFile>${project.build.directory}/site/checkstyle/checkstyle-cachefile</cacheFile>
@@ -98,7 +97,7 @@
                 <version>3.0.5</version>
                 <executions>
                     <execution>
-                        <phase>verify</phase>
+                        <phase>deploy</phase>
                         <goals>
                             <goal>check</goal>
                         </goals>
@@ -118,7 +117,7 @@
                 <version>2.7</version>
                 <executions>
                     <execution>
-                        <phase>verify</phase>
+                        <phase>deploy</phase>
                         <goals>
                             <goal>clean</goal>
                             <goal>check</goal>

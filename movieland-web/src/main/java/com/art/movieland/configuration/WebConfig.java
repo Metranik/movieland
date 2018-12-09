@@ -31,14 +31,20 @@ public class WebConfig {
     }
 
     @Bean
+    public ApplicationProperties applicationProperties() {
+        return new ApplicationProperties();
+    }
+
+    @Bean
     public DataSource dataSource() {
         BasicDataSource basicDataSource = new BasicDataSource();
-        basicDataSource.setDriverClassName(APPLICATION_PROPERTIES.getDatasourceDriver());
-        basicDataSource.setUrl(APPLICATION_PROPERTIES.getDatasourceUrl());
-        basicDataSource.setUsername(APPLICATION_PROPERTIES.getDatasourceUser());
-        basicDataSource.setPassword(APPLICATION_PROPERTIES.getDatasourcePassword());
-        basicDataSource.setInitialSize(APPLICATION_PROPERTIES.getDatasourceInitialSize());
-        basicDataSource.setMaxTotal(APPLICATION_PROPERTIES.getDatasourceMaxTotal());
+        ApplicationProperties applicationProperties = applicationProperties();
+        basicDataSource.setDriverClassName(applicationProperties.getDatasourceDriver());
+        basicDataSource.setUrl(applicationProperties.getDatasourceUrl());
+        basicDataSource.setUsername(applicationProperties.getDatasourceUser());
+        basicDataSource.setPassword(applicationProperties.getDatasourcePassword());
+        basicDataSource.setInitialSize(applicationProperties.getDatasourceInitialSize());
+        basicDataSource.setMaxTotal(applicationProperties.getDatasourceMaxTotal());
         return basicDataSource;
     }
 
