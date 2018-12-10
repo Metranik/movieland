@@ -1,5 +1,6 @@
 package com.art.movieland.controller.rest;
 
+import com.art.movieland.configuration.RootConfig;
 import com.art.movieland.configuration.TestConfig;
 import com.art.movieland.configuration.WebConfig;
 import org.junit.Before;
@@ -21,7 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {WebConfig.class, TestConfig.class})
+@ContextConfiguration(classes = {RootConfig.class, WebConfig.class, TestConfig.class})
 @WebAppConfiguration
 public class GenreControllerITest {
     private MockMvc mockMvc;
