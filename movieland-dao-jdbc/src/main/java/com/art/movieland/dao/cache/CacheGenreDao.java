@@ -47,7 +47,7 @@ public class CacheGenreDao implements GenreDao {
         return new ArrayList(genresByMovie);
     }
 
-    @Scheduled(fixedRateString = "${cache.scheduled.fixedRate.inMilliseconds}")
+    @Scheduled(fixedRateString = "#{${cache.scheduled.fixedRate.inHours}*60*60*1000}")
     @PostConstruct
     public void populateCache() {
         List<Genre> genres = genreDao.getAll();

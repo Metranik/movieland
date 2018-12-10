@@ -1,5 +1,8 @@
 package com.art.movieland.controller.rest;
 
+import com.art.movieland.configuration.RootConfig;
+import com.art.movieland.configuration.TestConfig;
+import com.art.movieland.configuration.WebConfig;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,9 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/applicationContext.xml",
-        "file:src/main/webapp/WEB-INF/dispatcherServlet-servlet.xml",
-        "classpath:testContext.xml"})
+@ContextConfiguration(classes = {RootConfig.class, WebConfig.class, TestConfig.class})
 @WebAppConfiguration
 public class CountryControllerITest {
     private MockMvc mockMvc;
