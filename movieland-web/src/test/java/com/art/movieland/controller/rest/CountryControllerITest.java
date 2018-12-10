@@ -37,7 +37,7 @@ public class CountryControllerITest {
 
     @Test
     public void testGetAll() throws Exception {
-        mockMvc.perform(get("/v1/country"))
+        mockMvc.perform(get("/country"))
                 .andDo(print())
                 .andExpect(
                         matchAll(

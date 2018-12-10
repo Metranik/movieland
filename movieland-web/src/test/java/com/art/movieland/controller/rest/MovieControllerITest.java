@@ -39,7 +39,7 @@ public class MovieControllerITest {
 
     @Test
     public void testGetAll() throws Exception {
-        mockMvc.perform(get("/v1/movie"))
+        mockMvc.perform(get("/movie"))
                 .andDo(print())
                 .andExpect(
                         matchAll(
@@ -52,7 +52,7 @@ public class MovieControllerITest {
 
     @Test
     public void testGetAllSortedByPriceAsc() throws Exception {
-        mockMvc.perform(get("/v1/movie?price=asc"))
+        mockMvc.perform(get("/movie?price=asc"))
                 .andDo(print())
                 .andExpect(
                         matchAll(
@@ -72,7 +72,7 @@ public class MovieControllerITest {
 
     @Test
     public void testGetAllSortedByRatingDesc() throws Exception {
-        mockMvc.perform(get("/v1/movie?rating=desc"))
+        mockMvc.perform(get("/movie?rating=desc"))
                 .andExpect(
                         matchAll(
                                 status().isOk(),
@@ -91,7 +91,7 @@ public class MovieControllerITest {
 
     @Test
     public void testGetRandom() throws Exception {
-        mockMvc.perform(get("/v1/movie/random"))
+        mockMvc.perform(get("/movie/random"))
                 .andDo(print())
                 .andExpect(
                         matchAll(
@@ -104,7 +104,7 @@ public class MovieControllerITest {
 
     @Test
     public void testGetByGenre() throws Exception {
-        mockMvc.perform(get("/v1/movie/genre/1"))
+        mockMvc.perform(get("/movie/genre/1"))
                 .andDo(print())
                 .andExpect(
                         matchAll(
@@ -117,7 +117,7 @@ public class MovieControllerITest {
 
     @Test
     public void testGetByGenreSortedByRatingDesc() throws Exception {
-        mockMvc.perform(get("/v1/movie/genre/1?rating=desc"))
+        mockMvc.perform(get("/movie/genre/1?rating=desc"))
                 .andDo(print())
                 .andExpect(
                         matchAll(
@@ -137,7 +137,7 @@ public class MovieControllerITest {
 
     @Test
     public void testGetById() throws Exception {
-        mockMvc.perform(get("/v1/movie/1"))
+        mockMvc.perform(get("/movie/1"))
                 .andDo(print())
                 .andExpect(
                         matchAll(
@@ -163,7 +163,7 @@ public class MovieControllerITest {
 
     @Test
     public void testGetMovieByIdEur() throws Exception {
-        mockMvc.perform(get("/v1/movie/1?currency=EUR"))
+        mockMvc.perform(get("/movie/1?currency=EUR"))
                 .andDo(print())
                 .andExpect(
                         matchAll(

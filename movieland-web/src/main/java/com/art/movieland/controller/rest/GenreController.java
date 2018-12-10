@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/v1")
+@RequestMapping(path = "/genre")
 public class GenreController {
     private GenreService genreService;
 
@@ -20,8 +20,7 @@ public class GenreController {
         this.genreService = genreService;
     }
 
-    @GetMapping(path = "/genre",
-            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public List<Genre> getAll() {
         return genreService.getAll();
     }
