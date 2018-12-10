@@ -6,7 +6,10 @@ addons:
     organization: metranik-github
     token:
       secure: 053d1965853a44cdc8f456ef294029cadc3a64a4
-  
+
+script:
+  mvn sonar:sonar -Dsonar.projectKey=Metranik_movieland -Dsonar.organization=metranik-github -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=053d1965853a44cdc8f456ef294029cadc3a64a4
+      
 branches:
   only:
     - master

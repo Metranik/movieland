@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/v1")
+@RequestMapping(path = "/country")
 public class CountryController {
     private CountryService countryService;
 
@@ -20,8 +20,7 @@ public class CountryController {
         this.countryService = countryService;
     }
 
-    @GetMapping(path = "/country",
-            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public List<Country> getAll() {
         return countryService.getAll();
     }

@@ -37,7 +37,7 @@ public class GenreControllerITest {
 
     @Test
     public void testGetAll() throws Exception {
-        mockMvc.perform(get("/v1/genre"))
+        mockMvc.perform(get("/genre"))
                 .andDo(print())
                 .andExpect(
                         matchAll(
