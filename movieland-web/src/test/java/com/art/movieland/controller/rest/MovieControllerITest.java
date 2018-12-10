@@ -1,7 +1,7 @@
 package com.art.movieland.controller.rest;
 
-import com.art.movieland.configuration.TestConfig;
 import com.art.movieland.configuration.RootConfig;
+import com.art.movieland.configuration.TestConfig;
 import com.art.movieland.configuration.WebConfig;
 import org.junit.Before;
 import org.junit.Test;
