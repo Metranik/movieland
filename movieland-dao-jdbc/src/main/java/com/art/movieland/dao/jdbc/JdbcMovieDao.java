@@ -85,7 +85,7 @@ public class JdbcMovieDao implements MovieDao {
                 stringBuilder.append(", ");
             }
         }
-        logger.debug("Movie buildQuery: {}", stringBuilder.toString());
+        logger.debug("Movie buildQuery: {}", stringBuilder);
         return stringBuilder.toString();
     }
 }

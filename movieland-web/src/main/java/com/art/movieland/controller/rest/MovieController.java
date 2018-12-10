@@ -15,7 +15,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/v1")
+@RequestMapping(path = "/movie")
 public class MovieController {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -26,26 +26,25 @@ public class MovieController {
         this.movieService = movieService;
     }
 
-    @GetMapping(path = "/movie",
-            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public List<Movie> getAll(@RequestParam LinkedHashMap<String, String> requestParam) {
         return movieService.getAll(new MovieParam(requestParam));
     }
 
-    @GetMapping(path = "/movie/random",
+    @GetMapping(path = "/random",
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public List<Movie> getRandom() {
         return movieService.getRandom();
     }
 
-    @GetMapping(path = "/movie/genre/{genreId}",
+    @GetMapping(path = "/genre/{genreId}",
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public List<Movie> getByGenre(@PathVariable int genreId,
                                   @RequestParam LinkedHashMap<String, String> requestParam) {
         return movieService.getByGenre(genreId, new MovieParam(requestParam));
     }
 
-    @GetMapping(path = "/movie/{movieId}",
+    @GetMapping(path = "/{movieId}",
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public MovieDto getById(@PathVariable int movieId,
                             @RequestParam LinkedHashMap<String, String> requestParam) {
