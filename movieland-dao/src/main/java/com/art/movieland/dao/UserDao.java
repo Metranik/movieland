@@ -2,7 +2,9 @@ package com.art.movieland.dao;
 
 import com.art.movieland.entity.User;
 
+import java.util.Optional;
+
 public interface UserDao {
     User getById(int id);
-    User getByEmail(String email);
+    Optional<User> getByEmail(String email);
 }

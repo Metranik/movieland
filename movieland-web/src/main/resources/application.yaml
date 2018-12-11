@@ -13,7 +13,7 @@ sql:
 # Cache
 scheduled:
   fixedRate:
-    cacheUuid.inMinutes: 10
+    cacheSession.inMinutes: 10
     cacheGenre.inHours: 4
 # liquibase
 liquibase:
