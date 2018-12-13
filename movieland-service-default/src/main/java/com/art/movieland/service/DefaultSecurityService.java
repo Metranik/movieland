@@ -15,7 +15,8 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.Optional;
+import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Service
@@ -61,6 +62,15 @@ public class DefaultSecurityService implements SecurityService {
         }
     }
 
+    @Override
+    public String getNameByUuid(String uuid) {
+        if (uuid==null){
+            return "";
+        }
+        Session session = cacheSession.get(uuid);
+        return (session == null) ? "" : session.getUserToken().getName();
+    }
+
     @Scheduled(fixedRateString = "#{${scheduled.fixedRate.cacheSession.inMinutes}*60*1000}")
     public void removeExpiredSessions() {
         cacheSession.forEach((k, v) -> {
@@ -69,11 +79,6 @@ public class DefaultSecurityService implements SecurityService {
                     }
                 }
         );
-    }
-
-    //for test
-    Map<String, Session> getCacheSession() {
-        return Collections.unmodifiableMap(new HashMap<>(cacheSession));
     }
 
     @Value("${authorization.expirationTime.inHours}")

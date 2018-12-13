@@ -6,4 +6,5 @@ import com.art.movieland.entity.UserToken;
 public interface SecurityService {
     UserToken login(UserCredentials userCredentials);
     UserToken logout(String uuid);
+    String getNameByUuid(String uuid);
 }
