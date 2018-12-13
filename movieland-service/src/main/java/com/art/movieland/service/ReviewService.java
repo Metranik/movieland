@@ -8,6 +8,5 @@ import java.util.Optional;
 
 public interface ReviewService {
     List<Review> getByMovie(int movieId);
-    Review addMovieReview(int movieId, User user, String text);
-    User getUserByUuid(String uuid);
+    Review addMovieReview(Review review);
 }

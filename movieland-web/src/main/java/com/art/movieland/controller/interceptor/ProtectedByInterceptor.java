@@ -2,6 +2,7 @@ package com.art.movieland.controller.interceptor;
 
 import com.art.movieland.controller.annotation.ProtectedBy;
 import com.art.movieland.entity.User;
+import com.art.movieland.entity.UserHolder;
 import com.art.movieland.entity.UserRole;
 import com.art.movieland.service.SecurityService;
 import com.art.movieland.service.exception.AuthenticationException;
@@ -37,6 +38,8 @@ public class ProtectedByInterceptor implements HandlerInterceptor {
         String uuid = request.getHeader("uuid");
         User user = securityService.getUserByUuid(uuid)
                 .orElseThrow(() -> new AuthenticationException("UUID is incorrect"));
+        UserHolder.setUser(user);
+
         UserRole userRole = UserRole.valueOf(user.getRole());
         logger.debug("UserRole: {}", userRole);
 

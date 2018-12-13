@@ -28,13 +28,8 @@ public class DefaultReviewService implements ReviewService {
     }
 
     @Override
-    public Review addMovieReview(int movieId, User user, String text) {
-        return reviewDao.addMovieReview(movieId, user, text);
+    public Review addMovieReview(Review review) {
+        return reviewDao.addMovieReview(review);
     }
 
-    @Override
-    public User getUserByUuid(String uuid) {
-        return securityService.getUserByUuid(uuid)
-                .orElseThrow(() -> new AuthenticationException("UUID is incorrect"));
-    }
 }

@@ -39,25 +39,21 @@ public class JdbcReviewDao implements ReviewDao {
     }
 
     @Override
-    public Review addMovieReview(int movieId, User user, String text) {
+    public Review addMovieReview(Review review) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(new PreparedStatementCreator() {
             @Override
             public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
                 PreparedStatement preparedStatement = connection.prepareStatement(ADD_MOVIE_REVIEW, Statement.RETURN_GENERATED_KEYS);
-                preparedStatement.setInt(1, movieId);
-                preparedStatement.setInt(2, user.getId());
-                preparedStatement.setString(3, text);
+                preparedStatement.setInt(1, review.getMovieId());
+                preparedStatement.setInt(2, review.getUser().getId());
+                preparedStatement.setString(3, review.getText());
                 return preparedStatement;
             }
         }, keyHolder);
-        int reviewId = keyHolder.getKey().intValue();
 
-        Review review = new Review();
+        int reviewId = keyHolder.getKey().intValue();
         review.setId(reviewId);
-        review.setMovieId(movieId);
-        review.setUser(user);
-        review.setText(text);
         return review;
     }
 

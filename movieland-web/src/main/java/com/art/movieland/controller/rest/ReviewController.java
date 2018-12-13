@@ -2,6 +2,7 @@ package com.art.movieland.controller.rest;
 
 import com.art.movieland.controller.annotation.ProtectedBy;
 import com.art.movieland.entity.Review;
+import com.art.movieland.entity.UserHolder;
 import com.art.movieland.entity.UserRole;
 import com.art.movieland.service.ReviewService;
 import org.slf4j.Logger;
@@ -29,9 +30,8 @@ public class ReviewController {
                           @RequestBody Review addReview) {
 
         logger.debug("RequestBody Review: {}", addReview);
-        reviewService.addMovieReview(
-                addReview.getMovieId(),
-                reviewService.getUserByUuid(uuid),
-                addReview.getText());
+
+        addReview.setUser(UserHolder.getUser());
+        reviewService.addMovieReview(addReview);
     }
 }
