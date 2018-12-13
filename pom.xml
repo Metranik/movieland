@@ -213,6 +213,12 @@
                 <artifactId>javax.servlet-api</artifactId>
                 <version>4.0.1</version>
             </dependency>
+            <!-- scrypt -->
+            <dependency>
+                <groupId>com.lambdaworks</groupId>
+                <artifactId>scrypt</artifactId>
+                <version>1.4.0</version>
+            </dependency>
             <!--  Test  -->
             <dependency>
                 <groupId>junit</groupId>
