@@ -28,7 +28,7 @@ public class JdbcReviewDaoTest {
         Review review1 = new Review();
         review1.setId(1);
         review1.setUser(user1);
-        review1.setComment("Comment1");
+        review1.setText("Comment1");
 
         User user2 = new User();
         user1.setId(2);
@@ -36,7 +36,7 @@ public class JdbcReviewDaoTest {
         Review review2 = new Review();
         review1.setId(2);
         review1.setUser(user2);
-        review1.setComment("Comment2");
+        review1.setText("Comment2");
 
         List<Review> expectedReviews = Arrays.asList(review1, review2);
 

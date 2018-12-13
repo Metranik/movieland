@@ -1,11 +1,15 @@
 package com.art.movieland.entity;
 
-import lombok.Data;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Data
+@RequiredArgsConstructor
+@Getter
+@EqualsAndHashCode
+@ToString
 public final class Session {
     private final UserToken userToken;
     private final LocalDateTime expirationTime;
+    private final User user;
 }
