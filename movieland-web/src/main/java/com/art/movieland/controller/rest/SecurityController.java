@@ -33,7 +33,7 @@ public class SecurityController {
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public UserToken logout(@RequestHeader(value = "uuid") String uuid) {
         UserToken userToken = securityService.logout(uuid);
-        logger.info("Logout: ", userToken);
+        logger.info("Logout: {}", userToken);
         return userToken;
     }
 }

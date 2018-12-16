@@ -4,4 +4,5 @@ CREATE TABLE users (
 , email                      VARCHAR(100)        NOT NULL
 , password_original          VARCHAR(100)
 , password                   VARCHAR(100)
+, role                       VARCHAR(100)
 );

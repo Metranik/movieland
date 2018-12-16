@@ -1,10 +1,7 @@
 package com.art.movieland.service;
 
 import com.art.movieland.dao.UserDao;
-import com.art.movieland.entity.Session;
-import com.art.movieland.entity.User;
-import com.art.movieland.entity.UserCredentials;
-import com.art.movieland.entity.UserToken;
+import com.art.movieland.entity.*;
 import com.art.movieland.service.exception.AuthenticationException;
 import com.lambdaworks.crypto.SCryptUtil;
 import org.slf4j.Logger;
@@ -45,8 +42,12 @@ public class DefaultSecurityService implements SecurityService {
 
         String uuid = UUID.randomUUID().toString();
         UserToken userToken = new UserToken(uuid, user.getName());
-        cacheSession.put(uuid, new Session(userToken, LocalDateTime.now().plusHours(expirationTimeInHours)));
-        logger.debug("Created Token: ", userToken);
+        cacheSession.put(uuid,
+                new Session(
+                        userToken,
+                        LocalDateTime.now().plusHours(expirationTimeInHours),
+                        user));
+        logger.debug("Created Token: {}", userToken);
 
         return userToken;
     }
@@ -64,11 +65,20 @@ public class DefaultSecurityService implements SecurityService {
 
     @Override
     public String getNameByUuid(String uuid) {
-        if (uuid==null){
+        if (uuid == null) {
             return "";
         }
         Session session = cacheSession.get(uuid);
         return (session == null) ? "" : session.getUserToken().getName();
+    }
+
+    @Override
+    public Optional<User> getUserByUuid(String uuid) {
+        if (uuid == null) {
+            return Optional.empty();
+        }
+        Session session = cacheSession.get(uuid);
+        return (session == null) ? Optional.empty() : Optional.of(session.getUser());
     }
 
     @Scheduled(fixedRateString = "#{${scheduled.fixedRate.cacheSession.inMinutes}*60*1000}")
