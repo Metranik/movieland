@@ -15,7 +15,7 @@ import java.util.UUID;
 public class LoggerInterceptor implements HandlerInterceptor {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    private long startTime;
+    private ThreadLocal<Long> threadLocalStartTime = new ThreadLocal();
     private SecurityService securityService;
 
     @Override
@@ -24,13 +24,13 @@ public class LoggerInterceptor implements HandlerInterceptor {
             HttpServletResponse response,
             Object handler) {
 
-        startTime = System.currentTimeMillis();
+        threadLocalStartTime.set(System.currentTimeMillis());
 
         String requestId = UUID.randomUUID().toString();
+        MDC.put("requestId", requestId);
+
         String requestUuid = request.getHeader("uuid");
         String userName = securityService.getNameByUuid(requestUuid);
-
-        MDC.put("requestId", requestId);
         MDC.put("userName", userName);
 
         return true;
@@ -43,7 +43,7 @@ public class LoggerInterceptor implements HandlerInterceptor {
             Object handler,
             ModelAndView modelAndView) {
 
-        logger.info("Process time taken: {}", startTime - System.currentTimeMillis());
+        logger.info("Process time taken: {} ms", System.currentTimeMillis() - threadLocalStartTime.get());
     }
 
     @Override

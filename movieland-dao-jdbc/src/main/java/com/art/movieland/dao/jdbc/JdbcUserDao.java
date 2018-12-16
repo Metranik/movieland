@@ -14,10 +14,10 @@ import java.util.Optional;
 
 @Repository
 public class JdbcUserDao implements UserDao {
-    private static final String GET_USER_BY_ID = "SELECT u.id, u.name, u.email, u.password" +
+    private static final String GET_USER_BY_ID = "SELECT u.id, u.name, u.email, u.password, u.role " +
             "FROM users u " +
             "WHERE id = ?";
-    private static final String GET_USER_BY_EMAIL = "SELECT u.id, u.name, u.email, u.password " +
+    private static final String GET_USER_BY_EMAIL = "SELECT u.id, u.name, u.email, u.password, u.role " +
             "FROM users u " +
             "WHERE u.email = ?";
     private static final UserRowMapper USER_ROW_MAPPER = new UserRowMapper();

@@ -1,6 +1,7 @@
 package com.art.movieland.configuration;
 
 import com.art.movieland.controller.interceptor.LoggerInterceptor;
+import com.art.movieland.controller.interceptor.ProtectedByInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -17,8 +18,14 @@ public class WebConfig implements WebMvcConfigurer {
         return new LoggerInterceptor();
     }
 
+    @Bean
+    public ProtectedByInterceptor protectedByInterceptor() {
+        return new ProtectedByInterceptor();
+    }
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(loggerInterceptor());
+        registry.addInterceptor(protectedByInterceptor());
     }
 }
